@@ -1,0 +1,35 @@
+{
+  "stage": "domain-design",
+  "upstream_ids": [
+    "US1.1",
+    "US1.2",
+    "US1.4",
+    "US1.3",
+    "US1.5",
+    "US1.6",
+    "US1.7",
+    "US1.8",
+    "US2.1",
+    "US2.2",
+    "US2.3",
+    "US2.4",
+    "US2.5",
+    "US3.1"
+  ],
+  "coverage": [
+    { "id": "US1.1", "status": "OK", "target": "CallChannel, Conversation" },
+    { "id": "US1.2", "status": "OK", "target": "Conversation, TicketService, Ticket" },
+    { "id": "US1.4", "status": "OK", "target": "Notification, Conversation" },
+    { "id": "US1.3", "status": "OK", "target": "Conversation" },
+    { "id": "US1.5", "status": "OK", "target": "TicketWeb, TicketService" },
+    { "id": "US1.6", "status": "OK", "target": "KnowledgeAnswer, Conversation, KnowledgeEntry" },
+    { "id": "US1.7", "status": "OK", "target": "Conversation, CallChannel" },
+    { "id": "US1.8", "status": "OK", "target": "Notification" },
+    { "id": "US2.1", "status": "OK", "target": "TicketWeb, TicketService" },
+    { "id": "US2.2", "status": "OK", "target": "TicketWeb, TicketService" },
+    { "id": "US2.3", "status": "OK", "target": "AgentWidget, Conversation" },
+    { "id": "US2.4", "status": "OK", "target": "AgentWidget, Conversation" },
+    { "id": "US2.5", "status": "OK", "target": "AgentWidget, TicketService" },
+    { "id": "US3.1", "status": "OK", "target": "TicketWeb, TicketService" }
+  ]
+}

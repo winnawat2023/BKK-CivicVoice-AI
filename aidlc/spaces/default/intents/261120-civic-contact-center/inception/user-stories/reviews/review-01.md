@@ -1,0 +1,23 @@
+## Review
+
+**Verdict:** READY
+**Reviewer:** aidlc-product-lead-agent
+**Date:** 2026-11-20T07:22:18Z
+**Iteration:** 1
+**Verdict Dictated:** no
+
+### Findings
+
+| ID | Severity | Location | Finding | Required action | Status |
+|---|---|---|---|---|---|
+| R-01 | Major | aidlc/spaces/default/intents/261120-civic-contact-center/inception/user-stories/stories.md > US1.4 and the intro paragraph on work order | US1.4 (SMS) is labelled Must Have and placed in the thin first slice (US1.1, US1.2, US1.4) with the citation team-practices.md. But team-practices.md defines that slice only as receive the call, create a Ticket and see the Ticket ID. It does not mention SMS. scope-document.md lists SMS as Could and the first item to cut. The story records the conflict but leaves it open, so the first slice carries the first cut item. | Before approving, decide the SMS priority (Must or Could) and update scope-document.md or the story to match. Drop US1.4 from the first slice, or state where the Ticket ID is shown to the caller in that slice, for example on screen or in the Ticket list. | New |
+| R-02 | Major | aidlc/spaces/default/intents/261120-civic-contact-center/inception/user-stories/stories.md > US1.7 AC1.7.3 | AC1.7.3 says the AI output is not in a 'verifiable format', and the format is not defined anywhere (the story's own open question says so). QA cannot write a pass/fail test for it, yet it is a Must Have story. | Either define the verifiable format in measurable terms (for example the type is in the supported list and the level is High, Medium or Low), or move AC1.7.3 out of the acceptance criteria into the open questions until it is defined. | New |
+| R-03 | Minor | aidlc/spaces/default/intents/261120-civic-contact-center/inception/user-stories/stories.md > US1.1 and US1.6 (AC1.6.1) and the Assumptions & Open Questions section | requirements.md has an open question on whether the system speaks its answers back to the caller (the PRD mentions this; scope-document.md does not classify it). AC1.6.1 ('the system starts answering within 2 seconds') and US1.1 assume spoken replies. The question is not carried into this stage's open questions. | Add the question of spoken replies to Assumptions & Open Questions and note which stories depend on it. | New |
+| R-04 | Minor | aidlc/spaces/default/intents/261120-civic-contact-center/inception/user-stories/stories.md > US2.1 (links NFR2) and traceability.json > NFR2 | US2.1 and traceability.json cite NFR2 (all screens meet WCAG 2.1 AA) for the staff screen, but US2.1 has no acceptance criterion for it. Only US1.5 (AC1.5.3) tests accessibility. | Add an accessibility criterion to US2.1, or limit the NFR2 trace to US1.5 and record that the staff screens are not yet covered. | New |
+| R-05 | Minor | aidlc/spaces/default/intents/261120-civic-contact-center/inception/user-stories/stories.md > US1.8 and traceability.json > FR8.1 | US1.8 has no acceptance criteria, yet FR8.1 is marked OK in the traceability file as if it were fully covered. | Mark FR8.1 as covered with an open question, or add a minimal criterion (for example Could Have, trigger not defined). | New |
+| R-06 | Minor | aidlc/spaces/default/intents/261120-civic-contact-center/inception/user-stories/stories.md > US1.2 and US1.7 | No criterion covers a failure to create the Ticket itself, such as the Ticket store being unavailable or the caller hanging up before the location is confirmed. The assumption in requirements.md that one call makes at most one Ticket is not carried into the stories. | Add a criterion for Ticket creation failure, for example transfer to a staff member or tell the caller, or record the case as out of scope with a reason. | New |
+| R-07 | Minor | aidlc/spaces/default/intents/261120-civic-contact-center/inception/user-stories/stories.md > US2.5 (AC2.5.1), US2.1 (AC2.1.3), US3.1 | Some behaviours in the criteria are not in requirements.md: the Ticket 'marked as forwarded', the empty-list message, and the district officer's own list view. The stories label some of these as assumptions. | Confirm these at the approval gate or reword them as open questions, so they are not read as agreed requirements. | New |
+
+### Summary
+
+The stories are organised by role as the user chose. Each has an actor, an action and a value. Most criteria use Given/When/Then and trace to requirements.md. traceability.json covers every FR and NFR ID with valid US targets and reasons for Deferred items. The two issues to settle before approval are the unresolved SMS priority, which also sits in the first slice, and the untestable AC1.7.3. The other points are minor gaps that can be handled in later stages.

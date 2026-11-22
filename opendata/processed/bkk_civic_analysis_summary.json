@@ -1,0 +1,323 @@
+{
+  "total_records": 885918,
+  "state_breakdown": {
+    "เสร็จสิ้น": 685036,
+    "กำลังดำเนินการ": 195934,
+    "ไม่เกี่ยวข้อง / ยกเลิก": 4204,
+    "รอรับเรื่อง": 744
+  },
+  "top_15_problem_types": [
+    {
+      "type": "ถนน",
+      "count": 93081
+    },
+    {
+      "type": "ทางเท้า",
+      "count": 82392
+    },
+    {
+      "type": "ผิดกฎจราจร",
+      "count": 80594
+    },
+    {
+      "type": "ไฟฟ้า",
+      "count": 69848
+    },
+    {
+      "type": "อื่นๆ",
+      "count": 64153
+    },
+    {
+      "type": "ความสะอาด",
+      "count": 63823
+    },
+    {
+      "type": "อุปกรณ์ชำรุด",
+      "count": 40707
+    },
+    {
+      "type": "อาคารสถานที่ชำรุด",
+      "count": 36618
+    },
+    {
+      "type": "เสียง",
+      "count": 32682
+    },
+    {
+      "type": "ต้นไม้",
+      "count": 27962
+    },
+    {
+      "type": "หาบเร่แผงลอย",
+      "count": 27408
+    },
+    {
+      "type": "ฝุ่นควัน&กลิ่น&PM2.5",
+      "count": 24897
+    },
+    {
+      "type": "สาธารณูปโภค -> ไฟฟ้า -> ขอซ่อมเปลี่ยน",
+      "count": 15465
+    },
+    {
+      "type": "สัตว์",
+      "count": 15194
+    },
+    {
+      "type": "น้ำท่วม",
+      "count": 14939
+    }
+  ],
+  "top_15_districts": [
+    {
+      "district": "จตุจักร",
+      "count": 49137
+    },
+    {
+      "district": "วัฒนา",
+      "count": 29862
+    },
+    {
+      "district": "บางกะปิ",
+      "count": 29818
+    },
+    {
+      "district": "คลองเตย",
+      "count": 29567
+    },
+    {
+      "district": "ปทุมวัน",
+      "count": 28349
+    },
+    {
+      "district": "ประเวศ",
+      "count": 27767
+    },
+    {
+      "district": "ราชเทวี",
+      "count": 24267
+    },
+    {
+      "district": "บางกอกน้อย",
+      "count": 23976
+    },
+    {
+      "district": "ดินแดง",
+      "count": 23085
+    },
+    {
+      "district": "สาทร",
+      "count": 22466
+    },
+    {
+      "district": "พระนคร",
+      "count": 22368
+    },
+    {
+      "district": "บางเขน",
+      "count": 21905
+    },
+    {
+      "district": "ห้วยขวาง",
+      "count": 21631
+    },
+    {
+      "district": "บางรัก",
+      "count": 21543
+    },
+    {
+      "district": "บางแค",
+      "count": 20878
+    }
+  ],
+  "district_resolution_sample": [
+    {
+      "district": "จตุจักร",
+      "total_issues": 49137,
+      "unresolved": 11393,
+      "resolution_rate_pct": 76.81
+    },
+    {
+      "district": "วัฒนา",
+      "total_issues": 29862,
+      "unresolved": 7568,
+      "resolution_rate_pct": 74.66
+    },
+    {
+      "district": "บางกะปิ",
+      "total_issues": 29818,
+      "unresolved": 7644,
+      "resolution_rate_pct": 74.36
+    },
+    {
+      "district": "คลองเตย",
+      "total_issues": 29567,
+      "unresolved": 8325,
+      "resolution_rate_pct": 71.84
+    },
+    {
+      "district": "ปทุมวัน",
+      "total_issues": 28349,
+      "unresolved": 7199,
+      "resolution_rate_pct": 74.61
+    },
+    {
+      "district": "ประเวศ",
+      "total_issues": 27767,
+      "unresolved": 6161,
+      "resolution_rate_pct": 77.81
+    },
+    {
+      "district": "ราชเทวี",
+      "total_issues": 24267,
+      "unresolved": 5887,
+      "resolution_rate_pct": 75.74
+    },
+    {
+      "district": "บางกอกน้อย",
+      "total_issues": 23976,
+      "unresolved": 5359,
+      "resolution_rate_pct": 77.65
+    },
+    {
+      "district": "ดินแดง",
+      "total_issues": 23085,
+      "unresolved": 5990,
+      "resolution_rate_pct": 74.05
+    },
+    {
+      "district": "สาทร",
+      "total_issues": 22466,
+      "unresolved": 4246,
+      "resolution_rate_pct": 81.1
+    },
+    {
+      "district": "พระนคร",
+      "total_issues": 22368,
+      "unresolved": 4038,
+      "resolution_rate_pct": 81.95
+    },
+    {
+      "district": "บางเขน",
+      "total_issues": 21905,
+      "unresolved": 3975,
+      "resolution_rate_pct": 81.85
+    },
+    {
+      "district": "ห้วยขวาง",
+      "total_issues": 21631,
+      "unresolved": 6687,
+      "resolution_rate_pct": 69.09
+    },
+    {
+      "district": "บางรัก",
+      "total_issues": 21543,
+      "unresolved": 5417,
+      "resolution_rate_pct": 74.85
+    },
+    {
+      "district": "บางแค",
+      "total_issues": 20878,
+      "unresolved": 4390,
+      "resolution_rate_pct": 78.97
+    },
+    {
+      "district": "สวนหลวง",
+      "total_issues": 20078,
+      "unresolved": 5869,
+      "resolution_rate_pct": 70.77
+    },
+    {
+      "district": "บางซื่อ",
+      "total_issues": 19592,
+      "unresolved": 3647,
+      "resolution_rate_pct": 81.39
+    },
+    {
+      "district": "ลาดพร้าว",
+      "total_issues": 19422,
+      "unresolved": 3205,
+      "resolution_rate_pct": 83.5
+    },
+    {
+      "district": "ธนบุรี",
+      "total_issues": 19335,
+      "unresolved": 2530,
+      "resolution_rate_pct": 86.91
+    },
+    {
+      "district": "วังทองหลาง",
+      "total_issues": 18560,
+      "unresolved": 3491,
+      "resolution_rate_pct": 81.19
+    }
+  ],
+  "yearly_trends_top_5": {
+    "2567": [
+      {
+        "type": "อื่นๆ",
+        "count": 38786
+      },
+      {
+        "type": "ถนน",
+        "count": 35692
+      },
+      {
+        "type": "ทางเท้า",
+        "count": 35182
+      },
+      {
+        "type": "ผิดกฎจราจร",
+        "count": 21650
+      },
+      {
+        "type": "ไฟฟ้า",
+        "count": 18254
+      }
+    ],
+    "2568": [
+      {
+        "type": "ผิดกฎจราจร",
+        "count": 44608
+      },
+      {
+        "type": "ถนน",
+        "count": 38737
+      },
+      {
+        "type": "ไฟฟ้า",
+        "count": 32208
+      },
+      {
+        "type": "ทางเท้า",
+        "count": 27643
+      },
+      {
+        "type": "อาคารสถานที่ชำรุด",
+        "count": 27222
+      }
+    ],
+    "2569": [
+      {
+        "type": "ความสะอาด",
+        "count": 24184
+      },
+      {
+        "type": "ทางเท้า",
+        "count": 19567
+      },
+      {
+        "type": "ไฟฟ้า",
+        "count": 19386
+      },
+      {
+        "type": "ถนน",
+        "count": 18652
+      },
+      {
+        "type": "อื่นๆ",
+        "count": 15238
+      }
+    ]
+  }
+}

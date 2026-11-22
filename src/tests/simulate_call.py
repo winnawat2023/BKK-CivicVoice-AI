@@ -1,0 +1,56 @@
+#!/usr/bin/env python3
+"""
+End-to-End Simulation Script for BKK CivicVoice AI.
+Simulates Genesys Cloud CX Inbound Voice Call triggering Webhook to Backend.
+"""
+
+import urllib.request
+import json
+import time
+
+URL = "http://localhost:8000/api/v1/genesys/webhook"
+
+test_cases = [
+    {
+        "desc": "Case 1: แจ้งปัญหาถนน/ทางเท้าชำรุด (สุขุมวิท 50 คลองเตย)",
+        "payload": {
+            "interaction_id": "CALL-9042-DEMO",
+            "ani": "084-768-5368",
+            "channel": "voice",
+            "transcript": "แถวซอยสุขุมวิท 50 มีท่อระบายน้ำแตก น้ำเอ่อท่วมถนน มอเตอร์ไซค์ล้มไปคันนึงแล้ว อันตรายมาก ช่วยส่งคนมาดูหน่อยครับ"
+        }
+    },
+    {
+        "desc": "Case 2: สอบถามระเบียบการทำบัตรประชาชน (Auto Q&A)",
+        "payload": {
+            "interaction_id": "CALL-9043-DEMO",
+            "ani": "081-234-5678",
+            "channel": "voice",
+            "transcript": "สอบถามหน่อยครับ วันเสาร์นี้สำนักงานเขตจตุจักรเปิดทำบัตรประชาชนไหมครับ แล้วต้องเตรียมเอกสารอะไรไปบ้าง"
+        }
+    }
+]
+
+def run_simulation():
+    print("=== Testing BKK CivicVoice AI Middleware End-to-End ===\n")
+    for tc in test_cases:
+        print(f"--- Running {tc['desc']} ---")
+        req = urllib.request.Request(
+            URL,
+            data=json.dumps(tc["payload"]).encode("utf-8"),
+            headers={"Content-Type": "application/json"}
+        )
+        try:
+            with urllib.request.urlopen(req, timeout=5) as resp:
+                res = json.loads(resp.read().decode("utf-8"))
+                print(f"Status: {resp.status} OK")
+                print("Result:")
+                print(json.dumps(res, ensure_ascii=False, indent=2))
+        except Exception as e:
+            print(f"Error connecting to backend: {e}")
+            print("Hint: Make sure FastAPI backend is running via `python3 src/backend/main.py`")
+        print("\n" + "="*50 + "\n")
+        time.sleep(1)
+
+if __name__ == "__main__":
+    run_simulation()
