@@ -47,6 +47,9 @@
   3. **Agent Copilot & Multilingual Assist (Genesys Widget):** 
      * หน้าจอเจ้าหน้าที่เด้งสรุป 3 บรรทัด + ปุ่ม 1-Click Dispatch ส่งเรื่องเข้าสำนักงานเขตทันที
      * **🌟 Multilingual Tourist Copilot:** แปลงเสียงภาษาอังกฤษเป็นข้อความภาษาไทยสดให้เจ้าหน้าที่อ่านเข้าใจทันที พร้อมแนะนำบทพูดภาษาอังกฤษ (English Script with Thai Pronunciation) หรือกด 1-Click ให้ AI ตอบแทนเป็นเสียงภาษาอังกฤษ ปลดล็อกกำแพงภาษาอย่างสมบูรณ์แบบ
+  4. **🤖 Dual-Mode Autonomous Voicebot & Proactive Outbound Calling:**
+     * **Inbound Conversational Voicebot:** ประชาชนโทรสอบถามระเบียบ กทม. ➔ AI ตอบเสียงไทย/อังกฤษเป็นธรรมชาติได้ทันที ไม่ต้องรอคิวเจ้าหน้าที่
+     * **Proactive Outbound Calling:** เมื่อสำนักงานเขตแก้ไขเรื่องเสร็จ ➔ AI Agent โทรกลับไปแจ้งประชาชนอัตโนมัติด้วยเสียงพูด (ไม่ต้องอ่าน SMS) พร้อมสอบถามความพึงพอใจ 1-5 ดาวบันทึกเข้าระบบทันที!
 
 ---
 
