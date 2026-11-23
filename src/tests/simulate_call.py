@@ -8,7 +8,7 @@ import urllib.request
 import json
 import time
 
-URL = "http://localhost:8000/api/v1/genesys/webhook"
+URL = "http://127.0.0.1:8000/api/v1/genesys/webhook"
 
 test_cases = [
     {
@@ -33,12 +33,16 @@ test_cases = [
 
 def run_simulation():
     print("=== Testing BKK CivicVoice AI Middleware End-to-End ===\n")
+    headers = {
+        "Content-Type": "application/json",
+        "User-Agent": "Mozilla/5.0"
+    }
     for tc in test_cases:
         print(f"--- Running {tc['desc']} ---")
         req = urllib.request.Request(
             URL,
             data=json.dumps(tc["payload"]).encode("utf-8"),
-            headers={"Content-Type": "application/json"}
+            headers=headers
         )
         try:
             with urllib.request.urlopen(req, timeout=5) as resp:
@@ -54,3 +58,4 @@ def run_simulation():
 
 if __name__ == "__main__":
     run_simulation()
+
