@@ -54,7 +54,7 @@
             <div class="flex items-center gap-3">
                 <div class="bg-brand-card border border-brand-border px-4 py-3 rounded-2xl text-center min-w-[110px]">
                     <div class="text-[10px] text-slate-400 uppercase font-semibold">Overall Progress</div>
-                    <div class="text-xl font-extrabold text-brand-green font-mono">60%</div>
+                    <div class="text-xl font-extrabold text-brand-green font-mono">75%</div>
                 </div>
                 <div class="bg-brand-card border border-brand-border px-4 py-3 rounded-2xl text-center min-w-[110px]">
                     <div class="text-[10px] text-slate-400 uppercase font-semibold">Days to Game</div>
@@ -96,32 +96,32 @@
                 </div>
 
                 <!-- Phase 2 -->
-                <div class="border border-blue-500/50 bg-blue-950/20 rounded-2xl p-4 relative">
+                <div class="border border-brand-green/40 bg-brand-green/5 rounded-2xl p-4 relative">
                     <div class="flex items-center justify-between text-xs mb-2">
-                        <span class="font-mono text-blue-400 font-bold">PHASE 2</span>
-                        <span class="bg-blue-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full animate-pulse">IN PROGRESS</span>
+                        <span class="font-mono text-brand-green font-bold">PHASE 2</span>
+                        <span class="bg-brand-green text-black text-[10px] font-bold px-2 py-0.5 rounded-full">DONE</span>
                     </div>
                     <div class="text-sm font-bold text-white mb-1">AI Stack & Server</div>
-                    <div class="text-[11px] text-slate-400 mb-3">24 – 25 พ.ย. 2569</div>
+                    <div class="text-[11px] text-slate-400 mb-3">23 พ.ย. 2569</div>
                     <ul class="text-[11px] text-slate-300 space-y-1">
-                        <li>▶ Deploy Faster-Whisper (DGX 101)</li>
-                        <li>▶ Deploy Typhoon-8B บน vLLM</li>
-                        <li>▶ SSL voiceai-demo.ark-insights.com</li>
+                        <li>✔ Faster-Whisper Turbo (int8/ARM)</li>
+                        <li>✔ Typhoon-1.5X-8B บน vLLM (8001)</li>
+                        <li>✔ Public HTTPS/WSS Gateway พร้อม 100%</li>
                     </ul>
                 </div>
 
                 <!-- Phase 3 -->
-                <div class="border border-brand-border bg-slate-900/60 rounded-2xl p-4 relative">
+                <div class="border border-purple-500/50 bg-purple-950/20 rounded-2xl p-4 relative">
                     <div class="flex items-center justify-between text-xs mb-2">
                         <span class="font-mono text-purple-400 font-bold">PHASE 3</span>
-                        <span class="bg-slate-800 text-slate-400 text-[10px] font-bold px-2 py-0.5 rounded-full">PENDING</span>
+                        <span class="bg-purple-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full animate-pulse">IN PROGRESS</span>
                     </div>
                     <div class="text-sm font-bold text-white mb-1">Genesys & Widget UI</div>
-                    <div class="text-[11px] text-slate-400 mb-3">26 – 27 พ.ย. 2569</div>
+                    <div class="text-[11px] text-slate-400 mb-3">24 – 27 พ.ย. 2569</div>
                     <ul class="text-[11px] text-slate-300 space-y-1">
-                        <li>• Inbound Flow ใน Genesys Cloud</li>
-                        <li>• Agent Copilot Widget (Iframe)</li>
-                        <li>• WebSocket Real-time Sync</li>
+                        <li>▶ Inbound Flow ใน Genesys (02-096-6763)</li>
+                        <li>▶ Agent Copilot Widget (Multilingual)</li>
+                        <li>▶ WebSocket Real-time Sync</li>
                     </ul>
                 </div>
 
@@ -227,17 +227,17 @@
                                 พีรพันธ์ (AI/Data)
                             </td>
                             <td class="py-3 px-4">
-                                • Stop คอนเทนเนอร์ที่ไม่ใช้บน DGX 101 เคลียร์พอร์ต<br>
-                                • ติดตั้ง Faster-Whisper (Turbo) บนพอร์ต 5001<br>
-                                • รัน Typhoon-1.5X-8B-Instruct ผ่าน vLLM (พอร์ต 8001)<br>
-                                • รัน FastAPI & SSL Certificate สำหรับ Webhook
+                                • เคลียร์พอร์ตและล็อก Container เดิมไม่ให้กวน<br>
+                                • Deploy Faster-Whisper Turbo บน DGX 101<br>
+                                • Deploy Typhoon-1.5X-8B-Instruct บน vLLM (พอร์ต 8001)<br>
+                                • เปิด Reverse Proxy SSL และทดสอบ Live Inference สำเร็จ
                             </td>
-                            <td class="py-3 px-4 font-mono text-slate-400">24-25 พ.ย.</td>
+                            <td class="py-3 px-4 font-mono text-slate-400">23 พ.ย.</td>
                             <td class="py-3 px-4">
-                                <span class="bg-amber-950 border border-amber-500 text-amber-400 px-2 py-0.5 rounded-full font-bold">Ready to Deploy</span>
+                                <span class="bg-emerald-950 border border-brand-green text-brand-green px-2 py-0.5 rounded-full font-bold">100% Completed</span>
                             </td>
                             <td class="py-3 px-4 font-mono text-cyan-400">
-                                scripts/setup_dgx101.sh<br>docs/ai-models-specification.md
+                                vLLM Typhoon-8B (8001)<br>Faster-Whisper Turbo
                             </td>
                         </tr>
 

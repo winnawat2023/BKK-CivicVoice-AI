@@ -13,13 +13,14 @@ Core AI Engine         Genesys Integration     End-to-End Test         รับ
 & API Backend          & Agent Widget          & Record Video          Plug-in ฟีเจอร์ทันที
 ```
 
-| วันที่ | เฟสงาน | รายละเอียดงานและเป้าหมาย | ผู้รับผิดชอบ |
-| :---: | :--- | :--- | :--- |
-| **23 – 25 พ.ย.** | **Phase 1 & 2: Core Foundation** | • Setup FastAPI Project + Dockerfile<br>• เชื่อมต่อ API Typhoon / Gemma (Intent & Entity Extraction)<br>• เตรียม Mock RAG ข้อมูลบริการ กทม. + Open Data 8.85 แสนเคส | **Peerapun (M3)** |
-| **26 – 27 พ.ย.** | **Phase 3: Genesys & Widget** | • สร้าง Inbound Call Flow บน Genesys Cloud CX (`ark-insights`)<br>• พัฒนาหน้าเว็บ Interaction Widget (WebSocket Live Summary)<br>• ฝัง Widget ลงใน Genesys Agent Workspace | **Watchara (M2)**<br>**Aitthiphon (M4)** |
-| **28 พ.ย.** | **Phase 4: Full Integration & Testing** | • ทดสอบ End-to-End: โทรเข้าเบอร์จริง → ถอดเทปเสียง → บอทตอบ/ส่งเรื่อง → เด้งขึ้นหน้าจอ Agent Widget<br>• ตรวจสอบเสถียรภาพและความเร็ว (Response Time < 2 วินาที) | **ทีมงานทุกคน** |
-| **29 พ.ย.** | **Rehearsal & Deliverables Freeze** | • จัดทำ Pitch Deck 8 สไลด์ฉบับสมบูรณ์<br>• ถ่ายทำและตัดต่อ **Backup Video (< 3 นาที)**<br>• ซักซ้อมคิวพูด Live Demo ทุกบทบาท | **Chaiyaporn (M1)** |
-| **30 พ.ย.** | **Game Day @ BITEC Buri** | • 09:45 น. รับโจทย์ลับเพิ่ม 1 ข้อ (Surprise Challenge)<br>• 10:00 – 14:30 น. ปรับโค้ดและทดสอบเพิ่ม 1 ฟีเจอร์<br>• 14:30 น. ส่งมอบผลงานทั้งหมด<br>• 15:00 น. ขึ้นเวที Live Demo | **ทีมงานทุกคน** |
+| วันที่ | เฟสงาน | รายละเอียดงานและเป้าหมาย | ผู้รับผิดชอบ | สถานะ |
+| :---: | :--- | :--- | :--- | :---: |
+| **23 พ.ย.** | **Phase 1: Architecture & Data Analysis** | • วิเคราะห์ข้อมูลสถิติ 3,012,468 เคส กทม. (2565–2569)<br>• คัดเลือก AI Model Stack (Faster-Whisper Turbo + Typhoon 8B)<br>• ร่าง Pitch Deck 8 สไลด์ & System Flow Infographic | **Chaiyaporn (M1)** | **DONE 100%** |
+| **23 – 24 พ.ย.** | **Phase 2: AI Core & Server Deployment** | • Deploy FastAPI Gateway + SSL `voiceai-demo.ark-insights.com`<br>• Deploy Faster-Whisper Turbo บน DGX 101<br>• Deploy Typhoon-1.5X-8B บน vLLM (พอร์ต 8001)<br>• ทดสอบยิง Webhook & Live Inference ภาษาไทย/อังกฤษ ผ่าน 100% | **Peerapun (M3)** | **DONE 100%** |
+| **25 – 27 พ.ย.** | **Phase 3: Genesys & Widget UI** | • สร้าง Inbound Call Flow บน Genesys Cloud CX (`ark-insights`) เบอร์ `02-096-6763`<br>• พัฒนาหน้าเว็บ Interaction Widget (Multilingual Copilot + Live Subtitles)<br>• ฝัง Widget ลงใน Genesys Agent Workspace | **Watchara (M2)**<br>**Aitthiphon (M4)** | **IN PROGRESS** |
+| **28 พ.ย.** | **Phase 4: Full Integration & Testing** | • ทดสอบ End-to-End: โทรเข้าเบอร์จริง `02-096-6763` → ถอดเทปเสียง → บอทสรุป/ส่งเรื่อง → เด้งขึ้นหน้าจอ Agent Widget<br>• ตรวจสอบเสถียรภาพและความเร็ว (Response Time < 1 วินาที) | **ทีมงานทุกคน** | **PENDING** |
+| **29 พ.ย.** | **Rehearsal & Deliverables Freeze** | • จัดทำ Pitch Deck 8 สไลด์ฉบับสมบูรณ์<br>• ถ่ายทำและตัดต่อ **Backup Video (< 3 นาที)**<br>• ซักซ้อมคิวพูด Live Demo ทุกบทบาท | **Chaiyaporn (M1)** | **PENDING** |
+| **30 พ.ย.** | **Game Day @ BITEC Buri** | • 09:45 น. รับโจทย์ลับเพิ่ม 1 ข้อ (Surprise Challenge)<br>• 10:00 – 14:30 น. ปรับโค้ดและทดสอบเพิ่ม 1 ฟีเจอร์<br>• 14:30 น. ส่งมอบผลงานทั้งหมด<br>• 15:00 น. ขึ้นเวที Live Demo | **ทีมงานทุกคน** | **GAME DAY** |
 
 ---
 
