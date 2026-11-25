@@ -1,6 +1,10 @@
 # Widget design concepts
 
-**ภาพ Widget ล่าสุด — Clean Pro:** `designs/06-agent-copilot-widget-clean-pro.png` เป็นภาพแนวตั้งเน้น Agent Copilot iframe หนึ่งคอลัมน์ แสดง Dual Subtitles, AI Insight, Tourist Assist, English TTS, Duplicate Notice และปุ่ม Dispatch/SMS ใช้ภาพ 05 เป็น style reference และบันทึก prompt ใน `generation-prompts-v4.json` ข้อมูลและสถานะในภาพเป็นสาธิต
+**ต้นแบบล่าสุดที่รันจากโค้ด:** ป๊อปอัป AI Voice อยู่บนเว็บประชาชนมุมขวาล่าง สรุปด้วยการ์ดรูปแบบเดียวกับ Agent Copilot และเปิดฟอร์มขอ SMS หลังยืนยันคำร้อง Agent Copilot ใช้ iframe ของเจ้าหน้าที่ ดู [Frontend Style Guide](../../../../../../../../docs/frontend-style-guide.md) และภาพต้นแบบ [Citizen SMS](designs/09-citizen-sms-browser-demo.png), [Agent Copilot](designs/07-agent-copilot-browser-demo.png) และ [Citizen Tracking](designs/08-citizen-tracking-browser-demo.png)
+
+## ภาพแนวคิดที่ใช้อ้างอิง
+
+**แนวคิด Agent Copilot — Clean Pro:** `designs/06-agent-copilot-widget-clean-pro.png` เป็นภาพแนวตั้งเน้น Agent Copilot iframe หนึ่งคอลัมน์ แสดง Dual Subtitles, AI Insight, Tourist Assist, English TTS, Duplicate Notice และปุ่ม Dispatch/SMS ใช้ภาพ 05 เป็น style reference และบันทึก prompt ใน `generation-prompts-v4.json` ข้อมูลและสถานะในภาพเป็นสาธิต
 
 ![Agent Copilot Widget — Clean Pro](designs/06-agent-copilot-widget-clean-pro.png)
 
@@ -10,13 +14,13 @@
 
 สร้างด้วย built-in image_gen โดยใช้ภาพ 04 เป็น style reference บันทึก prompt ฉบับเต็มและไฟล์ต้นทางใน `generation-prompts-v3.json`
 
-**อัปเดตจากบรีฟล่าสุด:** ใช้ Agent Copilot iframe 400–500px เป็นหน้าหลัก และ Citizen Tracking Web เป็นหน้าเสริม โดยคงแนว Clean Pro ขาว–น้ำเงินจาก Soft Blue ภาพ 04 ด้านล่างเป็นรุ่นก่อนเพิ่ม Tourist Assist ส่วนภาพล่าสุดคือ 05 และแผนที่ใช้ปัจจุบันคือ `agent-copilot-tracking-plan-v2.md` พร้อม `tourist-assist-plan.md` ข้อความ popup/AI-first UI ด้านล่างเป็นบันทึกแนวคิดเดิม ไม่ใช่ขอบเขตหน้าจอที่ใช้พัฒนาในบรีฟล่าสุด
+ภาพ 04 เป็นแนวคิดก่อนเพิ่ม Tourist Assist ใช้ Agent Copilot iframe 400–500px และ Citizen Tracking Web โดยคงแนว Clean Pro ขาว–น้ำเงินจาก Soft Blue
 
 ![Agent Copilot and Citizen Tracking — Clean Pro](designs/04-agent-copilot-tracking-clean-pro.png)
 
 **ดีไซน์ที่เลือก: 02 Soft Blue** — ผู้ใช้ยืนยันวันที่ 23 พฤศจิกายน 2026 ให้ใช้ขาว–น้ำเงิน ดู modern และเป็นมิตร เพราะเข้ากับเว็บไซต์อื่นได้ง่าย ใช้เป็นแนวทางสำหรับ popup ประชาชนและ Agent Copilot บน branch `feature/fe-widget`
 
-**คำชี้แจง flow ล่าสุด:** popup หลักใช้คุยกับ AI Voice ซึ่งตอบจากข้อมูลที่ทีมเตรียมไว้ หลังคุยเสร็จแสดงสรุปให้ตรวจสอบแล้วกดส่งเรื่องเข้าเขตได้ เจ้าหน้าที่มนุษย์เป็นทางส่งต่อเมื่อจำเป็น ไม่ใช่ผู้รับสายหลัก ข้อกำหนดพฤติกรรมนี้ใช้แทนข้อความและการแบ่งหน้าจอในภาพแนวคิดเดิม
+ต้นแบบใช้ข้อความ **เริ่มสนทนา** ในป๊อปอัปประชาชน ผู้ใช้ตรวจสรุปและกด **ยืนยันแจ้งปัญหา** เพื่อรับเลขคำร้อง เจ้าหน้าที่กดส่งสำนักงานเขตใน Agent Copilot
 
 สร้างด้วย built-in image_gen วันที่ 23 พฤศจิกายน 2026 เป็นภาพแนวคิด 3 แบบแยกไฟล์ ข้อมูลและสถานะสายเป็นตัวอย่าง เว็บไซต์/ตราสัญลักษณ์ในภาพเป็นองค์ประกอบประกอบแนวคิด ไม่ใช่การยืนยันแบรนด์หรือ deployment จริง
 
@@ -39,17 +43,5 @@
 ## 03 — Night Console
 
 แนวคิดเดิมสำหรับเปรียบเทียบ ภาพไม่ได้อยู่ในชุดไฟล์ปัจจุบัน
-
-## พฤติกรรมที่ต้องเพิ่มในการพัฒนา
-
-- ภาพเดิมใช้อ้างอิงสี/รูปทรงของ Soft Blue; เปลี่ยนปุ่ม “โทรหาเจ้าหน้าที่” เป็น “เริ่มคุยกับ AI” และเพิ่มสถานะ AI กำลังฟัง/ประมวลผล/ตอบ
-- เพิ่มลำดับหลังคุย: กำลังสรุป → แสดงสรุปและเขตให้ตรวจ → ส่งเรื่องเข้าเขต → ผลการส่ง/เลขเรื่อง โดย inquiry ที่ตอบข้อมูลจบไม่จำเป็นต้องส่งเขต
-- หน้าจอจริงต้องมี microphone permission, connecting, conversation ended, summary pending และ error states; queued ใช้เมื่อมีการรอจริง
-- แสดงพร้อมให้บริการหรือกำลังสนทนาเมื่อได้รับสถานะจริงเท่านั้น
-- ปุ่มโทรเริ่มการสนทนากับ AI Voice ผ่านไมโครโฟนบนเว็บไซต์ตามที่ผู้ใช้เลือก ไม่ใช้ `tel:` แทน
-- แสดงบทสนทนา/สรุปและปุ่มส่งเรื่องเฉพาะ session ของผู้ใช้รายนั้น; ข้อมูลและคำสั่งของเจ้าหน้าที่คงอยู่ใน Agent Copilot ตามสิทธิ์
-- AI ตอบจากชุดข้อมูลที่เตรียมไว้ หากไม่มีคำตอบให้แจ้งตรงๆ และเสนอส่งต่อมนุษย์ตามเอกสาร
-- ปุ่มส่งเรื่องยืนยันผลจาก Backend และปลายทางตามความสามารถจริง ไม่ใช้ success alert แบบตายตัว
-- Font/contrast และขนาดแตะในภาพยังไม่ใช่ผลตรวจ accessibility ต้องวัดเมื่อทำเป็น HTML/CSS
 
 บันทึก prompt ฉบับเต็มและข้อมูลไฟล์ต้นทางอยู่ใน `generation-prompts.json` ภาพถูกคัดลอกเข้า repository และคงไฟล์ต้นฉบับจากตัวสร้างไว้

@@ -4,6 +4,8 @@
 **ผู้ออกบรีฟ:** คุณชัยพร หอมเทียน (Team Lead)  
 **วันส่งมอบแบบ / Prototype:** 27 พฤศจิกายน 2569 (เพื่อซักซ้อมก่อนแข่งจริง 30 พ.ย.)
 
+**อัปเดตต้นแบบ 25 พฤศจิกายน 2569** ใช้ธีม Soft Blue ตาม [Frontend Style Guide](frontend-style-guide.md) ป๊อปอัป **ติดต่อเรา** บนเว็บประชาชนเริ่มสนทนากับ AI Voice และให้ตรวจสรุปก่อนยืนยันแจ้งปัญหา หลังได้เลขคำร้องแล้วจึงมีปุ่มขอ SMS เพื่อส่งพิกัดหรือรูป ส่วน Agent Copilot อยู่ใน iframe ของเจ้าหน้าที่สำหรับอ่าน Transcript ตรวจสรุป และส่งสำนักงานเขต ปุ่ม SMS ใน iframe เป็นเดโมสำหรับบรีฟฝั่งเจ้าหน้าที่ ดูวิธีรันและเปิด SMS จริงสำหรับเส้นทางประชาชนใน [README](../README.md#5-sms-หลังยืนยันแจ้งปัญหา)
+
 ---
 
 ## 1. บริบทและโจทย์หลัก (Context & Objectives)
@@ -76,7 +78,7 @@
 ---
 
 ## 5. สิ่งที่มีพร้อมให้คุณอิทธิพลเริ่มงานได้ทันที
-1. **โค้ด Widget ตั้งต้น (HTML/Tailwind):** อยู่ในโฟลเดอร์ [`src/frontend/widget/index.html`](file:///Users/h.chaiyaporn/code/AI-DLC/src/frontend/widget/index.html)
+1. **โค้ด Widget ตั้งต้น (HTML/Tailwind):** อยู่ที่ [`src/frontend/widget/index.html`](../src/frontend/widget/index.html)
 2. **Backend API & WebSocket Server:** รันอยู่ที่ `src/backend/main.py` (รันพอร์ต 8000 มีทั้ง REST API และ WebSocket)
 3. **สคริปต์ยิง Mock Data สด:** สามารถรัน `python src/tests/simulate_call.py` เพื่อจำลองเสียงสนทนาและดู Event วิ่งเข้าหน้าจอแบบ Real-time ได้ทันที
 
