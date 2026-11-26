@@ -116,6 +116,7 @@
   - Endpoint `/api/v1/tickets`: บันทึกและดึงข้อมูลสถานะ Ticket
 - [ ] **AI Reasoning Module:**
   - Prompt Engineering บน Typhoon / Gemma พร้อม Structured Output (JSON Schema Mode)
+- [x] **ASR Service (Faster-Whisper large-v3-turbo, พอร์ต 5001):** ถอดเสียงไทย/อังกฤษจากไฟล์ (`POST /v1/transcribe`) และเสียงสด (`WS /v1/stream/{interaction_id}`) แล้วส่งต่อ `/api/v1/calls/{id}/segments` ดู [asr-service.md](asr-service.md) *(ยังไม่เชื่อม Genesys AudioHook และยังไม่วัดความแม่นยำบนเสียงสายจริง)*
 - [ ] **Frontend Interaction Widget (HTML/JS/Tailwind):**
   - หน้าต่าง iframe สำหรับฝังใน Genesys Cloud Workspace (Client Application Widget)
   - เชื่อมต่อ WebSocket แสดง Live Transcription, AI Summary และสถานะ Ticket

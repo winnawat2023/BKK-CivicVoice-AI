@@ -68,6 +68,9 @@
 │   ├── backend/               # FastAPI Backend Middleware
 │   │   ├── main.py            # Core REST API + WebSocket Server
 │   │   └── requirements.txt   # Python Dependencies
+│   ├── asr/                   # ASR Service (Faster-Whisper, พอร์ต 5001) ดู docs/asr-service.md
+│   │   ├── main.py            # Entry point
+│   │   └── asr_service/       # REST /v1/transcribe + WebSocket /v1/stream/{id}
 │   ├── frontend/
 │   │   └── widget/            # Genesys Agent Interaction Widget (Tailwind CSS)
 │   └── tests/
@@ -101,3 +104,15 @@ python3 main.py
 ```bash
 python3 src/tests/simulate_call.py
 ```
+
+### 5. รัน ASR Service (ถอดเสียงด้วย Faster-Whisper)
+บริการแยกจาก Middleware ใช้ venv ของตัวเอง ครั้งแรกจะดาวน์โหลดโมเดลจาก Hugging Face
+```bash
+cd src/asr
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+uvicorn main:app --port 5001
+# ส่งไฟล์เสียงเข้า Middleware: curl -F "file=@call.wav" -F "interaction_id=CALL-1" http://localhost:5001/v1/transcribe
+```
+เครื่องที่ไม่มี GPU ให้ตั้ง `ASR_MODEL=small` ก่อนรัน รายละเอียด API, WebSocket เสียงสด และข้อจำกัด ดู [docs/asr-service.md](docs/asr-service.md)
