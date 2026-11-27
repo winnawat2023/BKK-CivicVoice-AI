@@ -48,6 +48,7 @@ def webhook_server():
 async def test_emit_turn_posts_payload(webhook_server):
     port = webhook_server.server_port
     settings = Settings(
+        _env_file=None,
         transcript_webhook_url=f"http://127.0.0.1:{port}/hook",
         transcript_webhook_bearer_token="secret-token",
     )
@@ -76,6 +77,19 @@ async def test_emit_turn_posts_payload(webhook_server):
     assert body["role"] == "caller"
     assert body["transcript"] == "สวัสดี"
     assert "timestamp" in body
+
+
+@pytest.mark.asyncio
+async def test_emit_turn_maps_to_live_civic_segments(webhook_server):
+    settings = Settings(
+        _env_file=None,
+        transcript_webhook_format="civic_segments",
+        transcript_webhook_url=f"http://127.0.0.1:{webhook_server.server_port}/api/v1/calls/{{interaction_id}}/segments",
+    )
+    await emit_turn(settings, {"interaction_id": "conv 1", "ani": "081", "role": "bot", "transcript": "รับทราบ"})
+    request = _WebhookHandler.received[0]
+    assert request["path"] == "/api/v1/calls/conv%201/segments"
+    assert request["json"] == {"speaker": "bot", "text": "รับทราบ", "is_final": True, "ani": "081"}
 
 
 @pytest.mark.asyncio

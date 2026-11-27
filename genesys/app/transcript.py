@@ -14,6 +14,7 @@ from pathlib import Path
 from typing import Any
 from urllib import request
 from urllib.error import HTTPError, URLError
+from urllib.parse import quote
 
 from .config import Settings
 
@@ -125,7 +126,16 @@ async def emit_turn(settings: Settings, payload: dict[str, Any]) -> None:
     token = (settings.transcript_webhook_bearer_token or "").strip()
 
     try:
-        await asyncio.to_thread(_post_json, url, body, timeout, token)
+        if settings.transcript_webhook_format == "civic_segments":
+            interaction = body.get("interaction_id")
+            if not interaction or "{interaction_id}" not in url:
+                raise ValueError("Civic segments need an interaction ID and a webhook URL template")
+            url = url.replace("{interaction_id}", quote(str(interaction), safe=""))
+            segment = {"speaker": body["role"], "text": body["transcript"],
+                       "is_final": True, "ani": body.get("ani")}
+            await asyncio.to_thread(_post_json, url, segment, timeout, token)
+        else:
+            await asyncio.to_thread(_post_json, url, body, timeout, token)
         return
     except HTTPError as exc:
         detail = ""

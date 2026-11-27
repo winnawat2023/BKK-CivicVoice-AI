@@ -209,7 +209,7 @@ class AudioHookSession:
         self.is_probe = is_connection_probe(parameters)
         input_variables = parameters.get("inputVariables")
         if input_variables:
-            self.log.info("open input variables: %s", input_variables)
+            self.log.info("open input variable names: %s", sorted(input_variables))
         else:
             self.log.info(
                 "open parameters (no inputVariables): keys=%s",
@@ -386,7 +386,6 @@ class AudioHookSession:
         await self._emit_transcript("bot", text)
 
     async def _on_ai_caller_text(self, text: str) -> None:
-        self.log.info("caller said: %s", text)
         await self._emit_transcript("caller", text)
 
     async def _emit_transcript(self, role: str, text: str) -> None:

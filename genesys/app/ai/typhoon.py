@@ -296,12 +296,12 @@ class TyphoonVLLMBridge:
             text = (text or "").strip()
             if not text or self._stopped:
                 return
-            self._log.info("caller: %s", text)
+            self._log.debug("caller transcript received (%d characters)", len(text))
             await self._on_caller_text(text)
             reply = await self._llm_reply(text, add_user=True)
             if not reply or self._stopped:
                 return
-            self._log.info("bot: %s", reply)
+            self._log.debug("bot reply generated (%d characters)", len(reply))
             await self._on_bot_text(reply)
             await self._speak(reply)
         except asyncio.CancelledError:

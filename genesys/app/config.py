@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from functools import lru_cache
+from typing import Literal
 
 from pydantic import AliasChoices, Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
@@ -188,6 +189,9 @@ class Settings(BaseSettings):
 
     # -- Transcript webhook -------------------------------------------------
     transcript_webhook_url: str = Field("", validation_alias="TRANSCRIPT_WEBHOOK_URL")
+    transcript_webhook_format: Literal["turn", "civic_segments"] = Field(
+        "turn", validation_alias="TRANSCRIPT_WEBHOOK_FORMAT"
+    )
     transcript_webhook_timeout: float = Field(
         5.0, validation_alias="TRANSCRIPT_WEBHOOK_TIMEOUT"
     )

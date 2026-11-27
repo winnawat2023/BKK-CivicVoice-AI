@@ -214,10 +214,13 @@ BOT_GREETING=true
 
 ```dotenv
 TRANSCRIPT_WEBHOOK_URL=https://your-server.example.com/transcript
+TRANSCRIPT_WEBHOOK_FORMAT=turn
 TRANSCRIPT_WEBHOOK_TIMEOUT=5.0
 TRANSCRIPT_WEBHOOK_BEARER_TOKEN=
 TRANSCRIPT_FALLBACK_DIR=transcripts
 ```
+
+สำหรับ Agent Copilot ให้ใช้ `TRANSCRIPT_WEBHOOK_FORMAT=civic_segments` และตั้ง `TRANSCRIPT_WEBHOOK_URL=http://127.0.0.1:8000/api/v1/calls/{interaction_id}/segments` เมื่อ Backend อยู่เครื่องเดียวกัน หลังจบ turn แต่ละครั้ง Connector จะส่ง `speaker`, `text`, `is_final` และ `ani` ให้ Backend กระจายต่อผ่าน WebSocket หัวข้อด้านล่างแสดงรูปแบบค่าเริ่มต้น `turn`
 
 ```json
 {
