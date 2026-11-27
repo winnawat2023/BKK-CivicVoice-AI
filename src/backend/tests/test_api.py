@@ -359,6 +359,31 @@ def test_voicebot_english_falls_back_without_llm(client):
     assert r["success"] and "1555" in r["reply_text"]
 
 
+def test_reviewed_location_overrides_transcript_and_is_saved_in_ticket(client):
+    districts = client.get("/api/v1/civic/districts").json()["districts"]
+    assert len(set(districts)) == 50 and "ดินแดง" in districts
+    review = {"district": "ดินแดง", "location_detail": "ถนนประชาสงเคราะห์"}
+    request = {"message": FLOOD_TEXT, "interaction_id": "V-review", "reviewed_location": review}
+    response = client.post("/api/v1/voicebot/converse", json=request)
+    assert response.status_code == 200
+    ticket_id = response.json()["ticket_id"]
+    ticket = client.get(f"/api/v1/tickets/{ticket_id}").json()
+    assert {key: ticket[key] for key in review} == review
+    assert "เขตดินแดง" in " ".join(ticket["summary_lines"])
+    assert client.post("/api/v1/voicebot/converse", json=request).json()["ticket_id"] == ticket_id
+    request["reviewed_location"] = {**review, "district": "พระนคร"}
+    assert client.post("/api/v1/voicebot/converse", json=request).status_code == 409
+
+
+def test_voicebot_rejects_unknown_reviewed_district(client):
+    response = client.post("/api/v1/voicebot/converse", json={
+        "message": FLOOD_TEXT, "interaction_id": "V-invalid",
+        "reviewed_location": {"district": "เขตที่ไม่มีในรายการ"},
+    })
+    assert response.status_code == 422
+    assert client.get("/api/v1/tickets").json()["total"] == 0
+
+
 def test_outbound_call_script_does_not_log_or_leak_beyond_payload(client):
     r = client.post(
         "/api/v1/outbound/call-citizen",

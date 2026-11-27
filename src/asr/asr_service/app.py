@@ -103,6 +103,7 @@ def create_app(
         return body
 
     # ----------------------------------------------- file transcription
+    @app.post("/v1/audio/transcriptions", include_in_schema=False)
     @app.post("/v1/transcribe")
     async def transcribe(
         file: UploadFile = File(..., description="Audio file: wav, mp3, m4a, ogg, flac, webm..."),

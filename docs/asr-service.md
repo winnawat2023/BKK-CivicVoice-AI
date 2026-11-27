@@ -120,6 +120,8 @@ cp .env.example .env
 
 ### 4.2 `POST /v1/transcribe` (อัปโหลดไฟล์เสียง)
 
+สำหรับ Genesys Audio Connector ใช้ endpoint ที่เข้ากันกับ OpenAI `POST /v1/audio/transcriptions` โดยส่งไฟล์แบบ multipart และรับข้อความในฟิลด์ `text`
+
 `multipart/form-data` รองรับ wav, mp3, m4a, ogg, flac, webm และชนิดอื่นที่ ffmpeg/PyAV อ่านได้ ตัวถอดรหัสแปลงเป็น 16 kHz mono ให้เอง
 
 | ฟิลด์ | จำเป็น | ค่าเริ่มต้น | คำอธิบาย |

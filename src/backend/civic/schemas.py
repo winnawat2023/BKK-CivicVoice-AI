@@ -4,7 +4,9 @@ from __future__ import annotations
 
 from typing import Any, Literal, Optional
 
-from pydantic import BaseModel, Field, model_validator
+from pydantic import BaseModel, Field, field_validator, model_validator
+
+from .districts import DISTRICTS
 
 Intent = Literal["complaint", "inquiry", "unclear"]
 Urgency = Literal["low", "medium", "high"]
@@ -108,11 +110,31 @@ class StatusUpdate(BaseModel):
     status: Literal["รับเรื่องแล้ว", "กำลังดำเนินการ", "แก้ไขเสร็จ"]
 
 
+class ReviewedLocation(BaseModel):
+    district: str | None = None
+    location_detail: str = Field(default="", max_length=240)
+
+    @field_validator("district")
+    @classmethod
+    def validate_district(cls, value: str | None) -> str | None:
+        if value is not None and value not in DISTRICTS:
+            raise ValueError("เลือกเขตจากรายชื่อเขตกรุงเทพมหานคร")
+        return value
+
+    @model_validator(mode="after")
+    def require_location(self):
+        self.location_detail = self.location_detail.strip()
+        if not self.district and not self.location_detail:
+            raise ValueError("เลือกเขตหรือระบุจุดเกิดเหตุ")
+        return self
+
+
 class VoicebotChatRequest(BaseModel):
     message: str = Field(..., min_length=1, description="User voice transcript")
     language: Optional[str] = "th"
     conversation_history: Optional[list[dict[str, str]]] = None
     interaction_id: Optional[str] = Field(None, description="When set, a complaint also creates a ticket")
+    reviewed_location: ReviewedLocation | None = None
 
 
 class OutboundCallRequest(BaseModel):

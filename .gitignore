@@ -47,6 +47,8 @@ data/raw/traffy_fondue/*.csv
 opendata/raw/traffy_fondue/*.csv
 *.parquet
 *.db
+*.db-shm
+*.db-wal
 *.sqlite3
 
 # AI-DLC Runtime Machine-local files (as per framework standard)

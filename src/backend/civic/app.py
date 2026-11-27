@@ -5,6 +5,7 @@ from __future__ import annotations
 import datetime as dt
 import json
 import logging
+import os
 from contextlib import asynccontextmanager
 from pathlib import Path
 from typing import Any, Optional
@@ -19,6 +20,7 @@ from pydantic import BaseModel, Field
 from . import __version__
 from .classifier import CivicClassifier
 from .config import Settings
+from .districts import DISTRICTS
 from .hub import ConnectionHub, MONITOR_CHANNEL, SessionManager, make_event
 from .llm import LLMClient, LLMError
 from .pipeline import CallPipeline, spoken_ticket_id
@@ -119,6 +121,10 @@ def create_app(
         return body
 
     # --------------------------------------------- AI: understand + answer
+    @app.get("/api/v1/civic/districts")
+    def district_names():
+        return {"districts": DISTRICTS}
+
     @app.post("/api/v1/civic/classify")
     async def classify(req: TextRequest):
         """Intent, category, district (1 of 50), urgency and 3-line summary for one utterance."""
@@ -201,8 +207,16 @@ def create_app(
 
         if req.interaction_id:
             result = await pipeline.process_call(
-                GenesysWebhookPayload(interaction_id=req.interaction_id, transcript=req.message)
+                GenesysWebhookPayload(interaction_id=req.interaction_id, transcript=req.message),
+                reviewed_location=req.reviewed_location,
             )
+            if req.reviewed_location is not None and result["duplicate"]:
+                existing = store.get(result["ticket_id"])
+                if existing and (
+                    existing["district"] != req.reviewed_location.district
+                    or existing["location_detail"] != req.reviewed_location.location_detail
+                ):
+                    raise HTTPException(409, "คำร้องนี้บันทึกไว้แล้วโดยใช้ข้อมูลพื้นที่เดิม")
             reply, intent = result["reply_text"], result["analysis"]["intent"]
             extra = {"next_action": result["next_action"], "ticket_id": result["ticket_id"]}
         else:
@@ -240,8 +254,8 @@ def create_app(
 
     @app.get("/api/v1/tts/synthesize")
     async def synthesize_speech(text: str = Query(..., max_length=600), lang: str = "th"):
-        """Thai (Premwadee) / English (Andrew) neural voice via edge-tts, returned as audio/mpeg."""
-        voice = "th-TH-PremwadeeNeural" if lang == "th" else "en-US-AndrewMultilingualNeural"
+        """Thai / English neural voice via edge-tts, returned as audio/mpeg."""
+        voice = (os.getenv("THAI_TTS_VOICE") or "th-TH-PremwadeeNeural") if lang == "th" else "en-US-AndrewMultilingualNeural"
         try:
             import edge_tts
 

@@ -6,7 +6,7 @@ import asyncio
 import logging
 from typing import Any
 
-from .classifier import CivicClassifier
+from .classifier import CivicClassifier, build_summary_lines
 from .config import Settings
 from .hub import CallSession, ConnectionHub, SessionManager, make_event
 from .rag import RagService
@@ -16,6 +16,7 @@ from .schemas import (
     URGENCY_TH,
     Classification,
     GenesysWebhookPayload,
+    ReviewedLocation,
     SegmentPayload,
 )
 from .store import TicketStore
@@ -191,7 +192,9 @@ class CallPipeline:
             state["running"] = False
 
     # --------------------------------------------------- full turn (webhook)
-    async def process_call(self, payload: GenesysWebhookPayload) -> dict[str, Any]:
+    async def process_call(
+        self, payload: GenesysWebhookPayload, *, reviewed_location: ReviewedLocation | None = None
+    ) -> dict[str, Any]:
         iid = payload.interaction_id
         session = self.sessions.get_or_create(iid, payload.ani)
         text = (payload.transcript or "").strip()
@@ -230,6 +233,11 @@ class CallPipeline:
             else:
                 reply, next_action = ASK_REPEAT_TH, "ask_repeat"
         else:  # complaint
+            if reviewed_location is not None:
+                c.district = reviewed_location.district
+                c.location_detail = reviewed_location.location_detail
+                c.needs_location = False
+                c.summary_lines = build_summary_lines(c)
             if c.needs_location and iid not in self._asked_location:
                 self._asked_location.add(iid)  # ask once (FR2.2), then take what we have
                 reply, next_action = ASK_LOCATION_TH, "ask_location"

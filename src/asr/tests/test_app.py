@@ -50,6 +50,14 @@ def test_transcribe_returns_text_without_forwarding_by_default(client, engine, b
     assert engine.calls[0][0] == WAV_BYTES and engine.calls[0][1] is None
 
 
+def test_openai_compatible_audio_upload_returns_text(client, backend):
+    response = client.post("/v1/audio/transcriptions", data={"model": "whisper-1", "language": "th"},
+                           files={"file": ("speech.wav", WAV_BYTES, "audio/wav")})
+    assert response.status_code == 200
+    assert response.json()["text"] == THAI_TEXT
+    assert backend.requests == []
+
+
 def test_transcribe_forwards_to_the_segments_endpoint(client, backend):
     r = upload(client, interaction_id="CALL-9042-DEMO", ani="0812345678")
     assert r.status_code == 200 and r.json()["forwarded"]["ok"] is True
