@@ -17,6 +17,7 @@ from .audio import SUPPORTED_ENCODINGS, WHISPER_RATE, decode_audio, resample
 from .config import Settings
 from .engine import ASRError, ModelLoadError, WhisperEngine
 from .forwarder import BackendForwarder, ForwardResult
+from .remote import RemoteEngine
 from .streaming import UtteranceSegmenter
 
 logger = logging.getLogger("bkk-asr")
@@ -25,14 +26,22 @@ Speaker = Literal["caller", "bot", "agent"]
 MIN_SAMPLE_RATE, MAX_SAMPLE_RATE = 8000, 48000
 
 
+def _default_engine(settings: Settings) -> WhisperEngine | RemoteEngine:
+    if settings.engine == "remote":
+        return RemoteEngine(settings)
+    if settings.engine == "local":
+        return WhisperEngine(settings)
+    raise ValueError(f"ASR_ENGINE must be 'local' or 'remote', not {settings.engine!r}")
+
+
 def create_app(
     settings: Settings | None = None,
     *,
-    engine: WhisperEngine | None = None,
+    engine: WhisperEngine | RemoteEngine | None = None,
     backend_transport: httpx.AsyncBaseTransport | None = None,
 ) -> FastAPI:
     settings = settings or Settings.from_env()
-    engine = engine or WhisperEngine(settings)
+    engine = engine or _default_engine(settings)
     forwarder = BackendForwarder(settings, transport=backend_transport)
     gate = asyncio.Semaphore(settings.max_concurrency)
 
@@ -49,6 +58,9 @@ def create_app(
                 logger.error("Preload failed (will retry on first request): %s", exc)
         yield
         await forwarder.aclose()
+        close = getattr(engine, "close", None)
+        if close:
+            close()
 
     app = FastAPI(
         title="BKK CivicVoice AI ASR Service",

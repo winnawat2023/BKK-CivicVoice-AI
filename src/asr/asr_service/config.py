@@ -57,7 +57,12 @@ DEFAULT_INITIAL_PROMPT = (
 
 @dataclass(frozen=True)
 class Settings:
-    # --- Faster-Whisper model ---
+    # --- which engine transcribes ---
+    engine: str = "local"  # local = Faster-Whisper in this process | remote = existing Thai ASR service over HTTP
+    remote_url: str = "http://192.168.200.100:5001"  # used when engine=remote (DGX 100 Thai ASR service)
+    remote_timeout_s: float = 30.0
+
+    # --- Faster-Whisper model (engine=local) ---
     model: str = "large-v3-turbo"  # model alias, Hugging Face repo id, or a local CTranslate2 directory
     device: str = "auto"  # auto | cuda | cpu
     compute_type: str = "auto"  # auto -> float16 on cuda, int8 on cpu; or any CTranslate2 type
@@ -98,6 +103,9 @@ class Settings:
         d = cls()
         origins = os.getenv("CORS_ORIGINS", "*")
         return cls(
+            engine=os.getenv("ASR_ENGINE", d.engine).strip().lower(),
+            remote_url=os.getenv("ASR_REMOTE_URL", d.remote_url).rstrip("/"),
+            remote_timeout_s=_env_float("ASR_REMOTE_TIMEOUT_S", d.remote_timeout_s),
             model=os.getenv("ASR_MODEL", d.model),
             device=os.getenv("ASR_DEVICE", d.device).strip().lower(),
             compute_type=os.getenv("ASR_COMPUTE_TYPE", d.compute_type).strip().lower(),
