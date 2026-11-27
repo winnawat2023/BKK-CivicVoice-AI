@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from functools import lru_cache
 
-from pydantic import Field
+from pydantic import AliasChoices, Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 DEFAULT_INSTRUCTIONS = (
@@ -68,7 +68,8 @@ class Settings(BaseSettings):
         "gpt-4o-mini-transcribe", validation_alias="OPENAI_TRANSCRIPTION_MODEL"
     )
     openai_instructions: str = Field(
-        DEFAULT_INSTRUCTIONS, validation_alias="OPENAI_INSTRUCTIONS"
+        DEFAULT_INSTRUCTIONS,
+        validation_alias=AliasChoices("OPENAI_INSTRUCTIONS", "BOT_INSTRUCTIONS"),
     )
     openai_connect_timeout: float = Field(
         4.0, validation_alias="OPENAI_CONNECT_TIMEOUT"
@@ -91,7 +92,8 @@ class Settings(BaseSettings):
         24000, validation_alias="GEMINI_OUTPUT_SAMPLE_RATE"
     )
     gemini_instructions: str = Field(
-        DEFAULT_INSTRUCTIONS, validation_alias="GEMINI_INSTRUCTIONS"
+        DEFAULT_INSTRUCTIONS,
+        validation_alias=AliasChoices("GEMINI_INSTRUCTIONS", "BOT_INSTRUCTIONS"),
     )
     gemini_connect_timeout: float = Field(
         8.0, validation_alias="GEMINI_CONNECT_TIMEOUT"
@@ -127,7 +129,8 @@ class Settings(BaseSettings):
     typhoon_api_key: str = Field("", validation_alias="TYPHOON_API_KEY")
     typhoon_model: str = Field("typhoon-8b", validation_alias="TYPHOON_MODEL")
     typhoon_instructions: str = Field(
-        DEFAULT_INSTRUCTIONS, validation_alias="TYPHOON_INSTRUCTIONS"
+        DEFAULT_INSTRUCTIONS,
+        validation_alias=AliasChoices("TYPHOON_INSTRUCTIONS", "BOT_INSTRUCTIONS"),
     )
     typhoon_connect_timeout: float = Field(
         10.0, validation_alias="TYPHOON_CONNECT_TIMEOUT"
@@ -193,6 +196,14 @@ class Settings(BaseSettings):
     )
     transcript_fallback_dir: str = Field(
         "", validation_alias="TRANSCRIPT_FALLBACK_DIR"
+    )
+
+    # -- Data context (folder data/) ---------------------------------------
+    data_context_enabled: bool = Field(
+        False, validation_alias="DATA_CONTEXT_ENABLED"
+    )
+    data_context_dir: str = Field(
+        "", validation_alias="DATA_CONTEXT_DIR"
     )
 
     # -- Outbound audio pacing ---------------------------------------------

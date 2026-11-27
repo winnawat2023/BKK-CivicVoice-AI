@@ -27,6 +27,7 @@ from typing import Awaitable, Callable, Optional
 import websockets
 
 from ..config import Settings
+from ..data_context import load_data_context
 from .audio import pcm16_to_ulaw, resample_pcm16, ulaw_to_pcm16
 
 AudioCallback = Callable[[bytes], Awaitable[None]]
@@ -90,6 +91,13 @@ class GeminiLiveBridge:
         self._bot_parts: list[str] = []
         self._bot_text_parts: list[str] = []
         self._caller_parts: list[str] = []
+
+    def _gemini_instructions(self) -> str:
+        instructions = self._settings.gemini_instructions
+        data_ctx = load_data_context(self._settings)
+        if data_ctx:
+            instructions = f"{instructions}\n\n{data_ctx}"
+        return instructions
 
     # -- lifecycle ----------------------------------------------------------
     @property
@@ -201,9 +209,13 @@ class GeminiLiveBridge:
         the model generate a turn from text without waiting for caller audio.
         """
 
-        prompt = (
+        greeting = (
             self._settings.gemini_greeting_prompt.strip()
             or self._settings.greeting_instructions
+        )
+        prompt = (
+            "พูดข้อความต่อไปนี้ซ้ำตามตัวอักษรทุกคำ ห้ามเปลี่ยน ห้ามเพิ่ม ห้ามลด ห้ามแปล:\n"
+            f"{greeting}"
         )
         await self._send(
             {
@@ -247,7 +259,7 @@ class GeminiLiveBridge:
                 },
             },
             "systemInstruction": {
-                "parts": [{"text": self._settings.gemini_instructions}]
+                "parts": [{"text": self._gemini_instructions()}]
             },
             "realtimeInputConfig": {
                 "automaticActivityDetection": {

@@ -22,6 +22,7 @@ from typing import Awaitable, Callable, Optional
 import websockets
 
 from ..config import Settings
+from ..data_context import load_data_context
 from .audio import pcm16_to_ulaw, resample_pcm16, ulaw_to_pcm16
 
 AudioCallback = Callable[[bytes], Awaitable[None]]
@@ -168,10 +169,14 @@ class RealtimeBridge:
                 "model": self._settings.openai_transcription_model
             }
 
+        instructions = self._settings.openai_instructions
+        data_ctx = load_data_context(self._settings)
+        if data_ctx:
+            instructions = f"{instructions}\n\n{data_ctx}"
         session = {
             "type": "realtime",
             "output_modalities": ["audio"],
-            "instructions": self._settings.openai_instructions,
+            "instructions": instructions,
             "audio": {
                 "input": audio_input,
                 "output": {

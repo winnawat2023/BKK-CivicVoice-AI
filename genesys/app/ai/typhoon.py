@@ -14,6 +14,7 @@ BKK-CivicVoice-AI) and OpenAI-compatible ``/v1/audio/speech`` endpoints.
 from __future__ import annotations
 
 import asyncio
+import base64
 import io
 import json
 import logging
@@ -26,6 +27,7 @@ from typing import Awaitable, Callable, Optional
 import httpx
 
 from ..config import Settings
+from ..data_context import load_data_context
 from .audio import pcm16_to_ulaw, resample_pcm16, ulaw_to_pcm16
 
 AudioCallback = Callable[[bytes], Awaitable[None]]
@@ -156,8 +158,12 @@ class TyphoonVLLMBridge:
         self._silence_ms = 0
         self._speech_ms = 0
 
+        instructions = settings.typhoon_instructions
+        data_ctx = load_data_context(settings)
+        if data_ctx:
+            instructions = f"{instructions}\n\n{data_ctx}"
         self._messages: list[dict[str, str]] = [
-            {"role": "system", "content": settings.typhoon_instructions}
+            {"role": "system", "content": instructions}
         ]
 
     @property
@@ -255,12 +261,8 @@ class TyphoonVLLMBridge:
         text = (self._settings.greeting_instructions or "").strip()
         if not text:
             return
-        # Ask LLM to produce the greeting text, then TTS it.
-        prompt = (
-            "Please greet the caller now. "
-            f"Instruction: {text}"
-        )
-        await self._turns.put(("__greeting__", prompt))  # sentinel tuple
+        # Speak the configured greeting verbatim for deterministic output.
+        await self._turns.put(("__greeting__", text))  # sentinel tuple
 
     async def _run_worker(self) -> None:
         try:
@@ -277,10 +279,10 @@ class TyphoonVLLMBridge:
         except Exception:
             self._log.exception("typhoon worker crashed")
 
-    async def _handle_greeting(self, prompt: str) -> None:
+    async def _handle_greeting(self, text: str) -> None:
         self._response_task = asyncio.current_task()
         try:
-            reply = await self._llm_reply(prompt, add_user=False)
+            reply = (text or "").strip()
             if reply and not self._stopped:
                 await self._on_bot_text(reply)
                 await self._speak(reply)
@@ -428,6 +430,8 @@ class TyphoonVLLMBridge:
         provider = (self._settings.typhoon_tts_provider or "edge_tts").strip().lower()
         if provider == "edge_tts":
             return await self._tts_edge(text)
+        if provider == "gemini":
+            return await self._tts_gemini(text)
         return await self._tts_openai(text)
 
     async def _tts_openai(self, text: str) -> tuple[bytes, int]:
@@ -447,6 +451,53 @@ class TyphoonVLLMBridge:
         resp = await self._http.post(url, headers=headers, json=payload)
         resp.raise_for_status()
         return _decode_audio_to_pcm16(resp.content, resp.headers.get("content-type", ""))
+
+    async def _tts_gemini(self, text: str) -> tuple[bytes, int]:
+        if self._http is None:
+            return b"", 8000
+        api_key = (getattr(self._settings, "gemini_api_key", "") or "").strip()
+        if not api_key:
+            raise RuntimeError("GEMINI_API_KEY is required for TYPHOON_TTS_PROVIDER=gemini")
+
+        model = (self._settings.typhoon_tts_model or "").strip() or "gemini-2.5-flash-preview-tts"
+        voice = (self._settings.typhoon_tts_voice or "").strip() or "Kore"
+        url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent"
+        headers = {"Content-Type": "application/json", "x-goog-api-key": api_key}
+        payload = {
+            "contents": [{"parts": [{"text": f"Read aloud the following text exactly as written:\n{text}"}]}],
+            "generationConfig": {
+                "responseModalities": ["AUDIO"],
+                "speechConfig": {
+                    "voiceConfig": {"prebuiltVoiceConfig": {"voiceName": voice}}
+                },
+            },
+        }
+        resp = await self._http.post(url, headers=headers, json=payload, timeout=30.0)
+        resp.raise_for_status()
+        body = resp.json()
+        candidates = body.get("candidates") or []
+        for cand in candidates:
+            content = (cand or {}).get("content") or {}
+            for part in content.get("parts") or []:
+                inline = (part or {}).get("inlineData") or (part or {}).get("inline_data") or {}
+                data_b64 = inline.get("data")
+                if not data_b64:
+                    continue
+                mime = inline.get("mimeType") or inline.get("mime_type") or "audio/L16;codec=pcm;rate=24000"
+                raw = base64.b64decode(data_b64)
+                # Gemini TTS commonly returns raw PCM (L16). Add WAV header handling fallback.
+                if "pcm" in mime.lower() and not raw.startswith(b"RIFF"):
+                    # audio/L16;codec=pcm;rate=24000
+                    rate = 24000
+                    for token in mime.replace(";", " ").split():
+                        if token.startswith("rate="):
+                            try:
+                                rate = int(token.split("=", 1)[1])
+                            except Exception:
+                                pass
+                    return raw, rate
+                return _decode_audio_to_pcm16(raw, mime)
+        raise RuntimeError("Gemini TTS returned no audio data")
 
     async def _tts_edge(self, text: str) -> tuple[bytes, int]:
         try:
