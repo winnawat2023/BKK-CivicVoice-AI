@@ -194,7 +194,10 @@ class CallPipeline:
     async def process_call(self, payload: GenesysWebhookPayload) -> dict[str, Any]:
         iid = payload.interaction_id
         session = self.sessions.get_or_create(iid, payload.ani)
-        text = payload.transcript.strip()
+        text = (payload.transcript or "").strip()
+        if not text:
+            # Call start (ID + ANI only): nothing to analyse yet, wait for the first utterance.
+            return self._await_speech_result(iid)
         last = session.segments[-1] if session.segments else None
         if not (last and last["speaker"] == "caller" and last["is_final"] and last["text"] == text):
             seg = session.add_segment(text, "caller", True)
@@ -259,6 +262,20 @@ class CallPipeline:
                 if answer
                 else None
             ),
+        }
+
+    def _await_speech_result(self, iid: str) -> dict[str, Any]:
+        """Webhook reply when a call has started but no speech has arrived yet (no reply, no analysis)."""
+        ticket = self.store.get_by_interaction(iid)
+        return {
+            "success": True,
+            "interaction_id": iid,
+            "next_action": "await_speech",
+            "reply_text": "",
+            "ticket_id": ticket["ticket_id"] if ticket else None,
+            "duplicate": False,
+            "analysis": None,
+            "answer": None,
         }
 
     def snapshot(self, interaction_id: str) -> dict[str, Any]:

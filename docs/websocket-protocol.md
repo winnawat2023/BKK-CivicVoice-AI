@@ -66,7 +66,8 @@ Anything else → `error`.
 
 * **Genesys / voicebot** → `POST /api/v1/genesys/webhook` `{interaction_id, ani?, channel?, transcript | text_or_audio_stream, timestamp?}`. Returns
   `{next_action, reply_text, ticket_id, analysis, answer}`; `next_action` is one of `reply | answer |
-  ask_location | ask_repeat | ticket_created | transfer_to_agent`.
+  ask_location | ask_repeat | ticket_created | transfer_to_agent | await_speech`. `transcript` is optional:
+  a call-start request with only `interaction_id` and `ani` returns `await_speech` (empty `reply_text`, `analysis: null`).
 * **ASR** (Faster-Whisper service, `src/asr`, port 5001) → `POST /api/v1/calls/{id}/segments`
   `{text, speaker?, is_final?, ani?}` for streaming partial/final transcript. The service does this itself when
   audio arrives with an `interaction_id` (file upload `POST /v1/transcribe` or live `WS /v1/stream/{id}`), so the

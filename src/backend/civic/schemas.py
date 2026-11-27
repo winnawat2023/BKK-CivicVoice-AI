@@ -90,7 +90,8 @@ class GenesysWebhookPayload(BaseModel):
     ani: str = Field("", description="Caller phone number (not stored in the ticket)")
     dnis: Optional[str] = Field(None, description="Dialed number")
     channel: str = "voice"
-    transcript: str = Field(..., min_length=1, description="Recognized Thai speech text")
+    # Optional: a Data Action may fire at call start with only the ID and ANI (no speech yet).
+    transcript: Optional[str] = Field(None, description="Recognized Thai speech text (may be absent at call start)")
     timestamp: Optional[str] = None
 
 

@@ -51,8 +51,24 @@ def test_ask_endpoint_answers_and_declines(client):
 
 
 def test_webhook_validation(client):
-    assert client.post("/api/v1/genesys/webhook", json={"interaction_id": "x"}).status_code == 422
-    assert client.post("/api/v1/genesys/webhook", json={"interaction_id": "x", "transcript": ""}).status_code == 422
+    assert client.post("/api/v1/genesys/webhook", json={"ani": "0812345678"}).status_code == 422  # no interaction_id
+
+
+def test_webhook_call_start_without_speech_waits_for_first_utterance(client):
+    """Data Action may send only ID + ANI at call start: accepted, no reply, no ticket yet."""
+    r = client.post("/api/v1/genesys/webhook", json={"interaction_id": "START-1", "ani": "0812345678"})
+    assert r.status_code == 200
+    body = r.json()
+    assert body["next_action"] == "await_speech" and body["reply_text"] == "" and body["ticket_id"] is None
+    assert client.get("/api/v1/tickets").json()["total"] == 0
+
+    speech = webhook(client, iid="START-1", transcript=FLOOD_TEXT).json()
+    assert speech["next_action"] == "ticket_created" and speech["ticket_id"]
+
+
+def test_webhook_empty_transcript_is_treated_as_no_speech(client):
+    body = client.post("/api/v1/genesys/webhook", json={"interaction_id": "EMPTY-1", "transcript": "  "}).json()
+    assert body["next_action"] == "await_speech"
 
 
 # ------------------------------------------------------ webhook: complaint

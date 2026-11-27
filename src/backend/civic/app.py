@@ -141,7 +141,7 @@ def create_app(
 
     # --------------------------------------------------- Genesys webhook
     async def _handle_webhook(payload: GenesysWebhookPayload):
-        logger.info("Interaction %s: %d chars of speech", payload.interaction_id, len(payload.transcript))
+        logger.info("Interaction %s: %d chars of speech", payload.interaction_id, len(payload.transcript or ""))
         result = await pipeline.process_call(payload)
         if result["reply_text"]:
             result["tts_audio_url"] = tts_url(result["reply_text"])
