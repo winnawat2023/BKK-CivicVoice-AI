@@ -33,6 +33,7 @@ test_cases = [
 
 def run_simulation():
     print("=== Testing BKK CivicVoice AI Middleware End-to-End ===\n")
+    failed = False
     headers = {
         "Content-Type": "application/json",
         "User-Agent": "Mozilla/5.0"
@@ -45,17 +46,19 @@ def run_simulation():
             headers=headers
         )
         try:
-            with urllib.request.urlopen(req, timeout=5) as resp:
+            with urllib.request.urlopen(req, timeout=30) as resp:
                 res = json.loads(resp.read().decode("utf-8"))
                 print(f"Status: {resp.status} OK")
                 print("Result:")
                 print(json.dumps(res, ensure_ascii=False, indent=2))
-        except Exception as e:
+        except (OSError, ValueError) as e:
+            failed = True
             print(f"Error connecting to backend: {e}")
-            print("Hint: Make sure FastAPI backend is running via `python3 src/backend/main.py`")
+            print("Hint: Start feature/backend on port 8000 using docs/runtime-integration.md")
         print("\n" + "="*50 + "\n")
         time.sleep(1)
+    return not failed
 
 if __name__ == "__main__":
-    run_simulation()
+    raise SystemExit(0 if run_simulation() else 1)
 

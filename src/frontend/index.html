@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BKK CivicVoice · บริการประชาชน</title>
+  <link rel="stylesheet" href="./tailwind.css">
+  <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="./summary.css">
+  <link rel="stylesheet" href="./citizen.css?v=location-2">
+  <script type="module" src="./citizen.mjs"></script>
+</head>
+<body class="citizen">
+  <header class="civic-header">
+    <div class="civic-inner flex flex-wrap items-center gap-3">
+      <a class="brand civic-brand" href="./"><img class="ark-logo" src="./assets/ark-insights.png" alt="ARK Insights" width="66" height="41"><strong>BKK CivicVoice</strong></a>
+      <nav class="flex flex-wrap items-center gap-3" aria-label="เมนูบริการ">
+        <a href="#services">บริการประชาชน</a>
+        <a href="./tracking/">ติดตามคำร้อง</a>
+        <button id="nav-voice" type="button">ติดต่อเรา</button>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <section class="civic-hero">
+      <div class="civic-inner">
+        <h1>บริการของกรุงเทพมหานคร<br>เพื่อชีวิตคนเมืองที่ดีขึ้น</h1>
+        <p>แจ้งปัญหาเมืองและติดตามความคืบหน้าได้ในที่เดียว</p>
+      </div>
+    </section>
+    <section class="civic-inner civic-services" id="services">
+      <h2>บริการยอดนิยม</h2>
+      <div class="civic-grid">
+        <button class="civic-card" type="button" data-topic="tourist"><span>⚠</span><span><strong>แจ้งฝาท่อชำรุด</strong><small>ถนน · ทางเท้า · ท่อระบายน้ำ</small></span><span aria-hidden="true">›</span></button>
+        <button class="civic-card" type="button" data-topic="lighting"><span>☀</span><span><strong>แจ้งไฟถนนดับ</strong><small>ไฟส่องสว่างในพื้นที่</small></span><span aria-hidden="true">›</span></button>
+        <a class="civic-card" href="./tracking/"><span>✓</span><span><strong>ติดตามคำร้อง</strong><small>ตรวจสถานะด้วยเลขคำร้อง</small></span><span aria-hidden="true">›</span></a>
+      </div>
+      <a class="staff-link" href="./desk.html">เปิดโต๊ะเจ้าหน้าที่</a>
+    </section>
+  </main>
+
+  <div class="voice-dock">
+    <section id="voice-panel" class="voice-panel" aria-labelledby="voice-title" hidden>
+      <header class="voice-header">
+        <img class="ark-logo" src="./assets/ark-insights.png" alt="ARK Insights" width="57" height="36">
+        <div><h2 id="voice-title">BKK CivicVoice</h2><small>AI Voice สำหรับประชาชน</small></div>
+        <button class="voice-close" id="voice-close" type="button" aria-label="ปิดหน้าต่าง AI Voice">×</button>
+      </header>
+      <div class="voice-body">
+        <p class="voice-status" id="voice-status" role="status"></p>
+        <div class="voice-intro grid gap-2" id="voice-intro">
+          <strong>แจ้งปัญหาเมือง คุยกับเราได้เลย</strong>
+          <span id="voice-phone">โทร 02-096-6763</span>
+          <button class="primary" id="voice-start" type="button" disabled>เริ่มสนทนาบนเว็บ</button>
+        </div>
+        <div id="voice-chat" class="grid gap-2" hidden>
+          <div class="voice-indicator" id="voice-indicator" aria-hidden="true"><span></span></div>
+          <ol id="voice-transcript" class="voice-transcript" role="log" aria-label="บทสนทนา" tabindex="0"></ol>
+          <button id="voice-finish" type="button">จบการสนทนา</button>
+        </div>
+        <section id="voice-review" class="voice-review grid gap-2" aria-labelledby="voice-review-title" hidden>
+          <div class="card summary-card">
+            <h3 class="card-title" id="voice-review-title"><span class="card-icon violet voice-sparkle" aria-hidden="true">✦</span>สรุปการสนทนา</h3>
+            <div class="card-body">
+              <p class="muted" id="voice-no-summary">ยังไม่มีรายละเอียดสำหรับสรุป</p>
+              <ul class="summary" id="voice-summary" hidden></ul>
+              <div class="tags" id="voice-classifications" hidden></div>
+            </div>
+          </div>
+          <section id="voice-area" class="voice-area" aria-label="พื้นที่เกิดเหตุ" hidden>
+            <div class="voice-area-heading">
+              <span class="voice-area-pin" aria-hidden="true"></span>
+              <div class="voice-area-copy">
+                <div id="voice-district-card" hidden><strong id="voice-district-name"></strong></div>
+                <p id="voice-location-preview"></p>
+              </div>
+            </div>
+            <button type="button" id="voice-location-toggle" aria-controls="voice-location" aria-expanded="false"
+              class="voice-area-toggle"><span>ระบุสถานที่เพิ่มเติม</span><span class="voice-area-chevron" aria-hidden="true"></span></button>
+            <fieldset id="voice-location" class="voice-location" aria-label="แก้ไขพื้นที่เกิดเหตุ" hidden>
+              <label class="voice-location-field" for="voice-district-select">
+                <span>เขตที่เกิดเหตุ</span>
+                <span class="voice-location-select">
+                  <select id="voice-district-select" class="appearance-none w-full"></select>
+                  <span class="voice-area-chevron" aria-hidden="true"></span>
+                </span>
+              </label>
+              <label class="voice-location-field" for="voice-location-detail">
+                <span>ถนน ซอย หรือจุดสังเกต</span>
+                <input id="voice-location-detail" type="text" maxlength="240" placeholder="เช่น ซอยสุขุมวิท 50">
+              </label>
+            </fieldset>
+          </section>
+          <p class="notice" id="voice-review-note" hidden></p>
+          <button class="primary" id="voice-confirm" type="button">ยืนยันแจ้งปัญหา</button>
+          <p id="voice-ticket" role="status" hidden></p>
+          <a id="voice-tracking" hidden>ติดตามคำร้อง</a>
+          <div class="voice-sms grid gap-2" id="voice-sms" hidden>
+            <form id="voice-sms-form" class="grid gap-2">
+              <label for="voice-sms-phone">เบอร์มือถือสำหรับรับเลขคำร้อง สรุป และลิงก์ส่งรูปหรือพิกัด (ไม่บังคับ)</label>
+              <input id="voice-sms-phone" type="tel" inputmode="tel" autocomplete="tel" maxlength="24" required>
+              <button type="submit" id="voice-sms-send" disabled>ส่ง SMS</button>
+            </form>
+            <p class="muted" id="voice-sms-status" role="status" tabindex="-1" hidden></p>
+            <a id="voice-sms-demo-link" hidden>เปิดลิงก์ SMS จำลอง</a>
+          </div>
+          <div class="voice-controls flex flex-wrap gap-2">
+            <button id="voice-back" type="button">กลับไปคุยต่อ</button>
+            <button id="voice-reset" type="button">เริ่มใหม่</button>
+          </div>
+        </section>
+      </div>
+    </section>
+    <button type="button" id="voice-launcher" class="voice-launcher" aria-expanded="false" aria-controls="voice-panel">
+      <span aria-hidden="true">☎</span> ติดต่อเรา
+    </button>
+  </div>
+</body>
+</html>

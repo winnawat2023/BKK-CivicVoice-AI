@@ -77,67 +77,34 @@
 
 ---
 
-## 🚀 Quick Start (Local Setup)
+## เริ่มใช้งานและทดสอบ
 
-### 1. ติดตั้ง Dependencies ฝั่ง Backend
-```bash
-cd src/backend
-python3 -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
-```
+| หน้าจอ | เปิดและทดลอง |
+| --- | --- |
+| เว็บประชาชน | [หน้าเว็บ](http://127.0.0.1:8765/) → **ติดต่อเรา** มุมขวาล่าง → **เริ่มสนทนาบนเว็บ** อนุญาตไมค์ ระบบส่งเสียงเมื่อหยุดพูดและขึ้นข้อความตอบหลัง AI พูดจบ กด **จบการสนทนา** เพื่อดูสรุป เลือกเขตจากรายชื่อ 50 เขตหรือแก้รายละเอียดสถานที่ก่อนยืนยัน |
+| Agent Copilot | [โต๊ะเจ้าหน้าที่](http://127.0.0.1:8765/desk.html) เลือกสายหรือกรอก Conversation ID เปิด iframe ขนาด 400, 450 หรือ 500px ดู Transcript และสรุปสด ยืนยันส่งเขตเพื่อเปลี่ยนสถานะใน Backend |
+| Citizen Tracking | [เดโม Timeline 4 ขั้น](http://127.0.0.1:8765/tracking/?mode=demo) สำหรับคำร้องจริงเปิดจากลิงก์หลังยืนยันหรือจาก SMS เพื่อดูสถานะและเพิ่มหลักฐาน |
+| เดโมสำหรับซ้อม | [โต๊ะเจ้าหน้าที่พร้อมข้อมูลตัวอย่าง](http://127.0.0.1:8765/desk.html?mode=demo) และ [Agent Copilot แบบแยก](http://127.0.0.1:8765/widget/?mode=demo) |
 
-### 2. รัน Core Middleware
-```bash
-python3 main.py
-# Server will start on http://localhost:8000
-# OpenAPI Docs: http://localhost:8000/docs
-```
+รันคำสั่งนี้จาก root ของ branch `feature/fe-widget` เพื่อเปิดหน้าเว็บและเดโมแบบไม่ต้องใช้ Backend
 
-### 3. เปิดหน้าจอ Genesys Agent Widget
-
-ดู [คู่มือสไตล์ Soft Blue และภาพหน้าจอต้นแบบ](docs/frontend-style-guide.md) เอกสารรอบนี้อ้างอิงต้นแบบจาก working copy ของทีม การรันหน้า `/`, `/desk.html`, `/tracking/` และบริการ SMS ต้องใช้ซอร์สต้นแบบจากเครื่องพัฒนาหรือจาก commit โค้ดที่จะเผยแพร่ภายหลัง
-
-จาก root ของ repository ให้เปิดเซิร์ฟเวอร์สำหรับไฟล์ Frontend:
-
-```bash
+```powershell
 python -m http.server 8765 --bind 127.0.0.1 --directory src/frontend
 ```
 
-- หน้า AI Voice สำหรับประชาชน: `http://127.0.0.1:8765/` กด **ติดต่อเรา** แล้วลองแจ้งปัญหา ดูสรุป ยืนยัน และเปิด Tracking ของคำร้องตัวอย่าง
-- โต๊ะเจ้าหน้าที่: `http://127.0.0.1:8765/desk.html` เลือกสายตัวอย่างและทดลองรับสาย เพิ่มข้อความ ส่งเรื่อง หรือจบสาย Agent Copilot แสดงเป็น iframe ด้านข้าง ปรับขนาดได้ 400/450/500px
-- เมื่อ Backend 2.0 รันที่พอร์ต 8000 ให้เปิด `http://127.0.0.1:8765/?mode=live` เพื่อทดสอบ AI Voice กับ API Guide การใช้ไมค์ต้องอาศัยเบราว์เซอร์ที่รองรับ SpeechRecognition และ origin ที่เปิดสิทธิ์ไมค์ได้
-- Agent Copilot แบบเปิดแยก: `http://127.0.0.1:8765/widget/?mode=demo`
-- Citizen Tracking เดโม: `http://127.0.0.1:8765/tracking/?mode=demo`
-- เชื่อม API 2.0 local: `http://127.0.0.1:8765/widget/?interaction_id=CALL-9042-DEMO&apiBase=http://127.0.0.1:8000`
-- ดูคำร้องภายใน: `http://127.0.0.1:8765/tracking/?mode=internal&ticket=BKK-2026-0001&apiBase=http://127.0.0.1:8000`
+สำหรับการสนทนาจริงบนเว็บ, WebSocket, ระบบ Genesys และ SMS ให้ทำตาม [วิธีติดตั้ง รัน และทดสอบครบทุกบริการ](docs/runtime-integration.md) ดูสี ฟอนต์ การจัดวาง และภาพใน [คู่มือ Soft Blue](docs/frontend-style-guide.md)
 
-เมื่อนำไปฝังใน Genesys ให้ตั้งค่า API origin ใน `src/frontend/config.mjs` และส่ง Conversation ID มาที่ Widget โดยตามค่าเริ่มต้น API origin จะมาจาก origin ของหน้า Frontend ดูขั้นเปิดใช้และบริการที่ยังต้องรอใน [แผนเชื่อม API 2.0](aidlc/spaces/default/intents/261120-civic-contact-center/inception/refined-mockups/frontend-widget-proposal/frontend-api-integration-plan.md)
+Frontend ใช้ Tailwind CSS ที่คอมไพล์ไว้แล้วและฟอนต์ Sarabun ในโปรเจกต์ หากแก้คลาสให้คอมไพล์ใหม่ด้วย [Tailwind CLI](https://tailwindcss.com/docs/installation/tailwind-cli) รุ่น 4.1.18
 
-หน้าเดโมใช้ Tailwind CSS ที่คอมไพล์ไว้แล้วกับฟอนต์ Sarabun ในโปรเจกต์ หากแก้คลาส Tailwind ให้คอมไพล์ใหม่ด้วย [Tailwind CLI](https://tailwindcss.com/docs/installation/tailwind-cli) รุ่น 4.1.18:
-
-```bash
+```powershell
 tailwindcss -i src/frontend/tailwind.input.css -o src/frontend/tailwind.css --minify
 ```
 
-### 4. ทดสอบจำลองสายโทรเข้า (Simulation)
-```bash
-python3 src/tests/simulate_call.py
-```
+## SMS หลังยืนยันแจ้งปัญหา
 
-### 5. SMS หลังยืนยันแจ้งปัญหา
+กรอกเบอร์มือถือในหน้าสรุปได้ เมื่อ Backend ออกเลขคำร้องแล้วจึงกด **ส่ง SMS** ข้อความใช้เลขคำร้อง สรุปสั้นจาก AI และพื้นที่จากคำร้องที่บันทึก พร้อมลิงก์เปิดหน้าส่งรูป แชร์ GPS หรือวางลิงก์ Google Maps, Apple Maps และ OpenStreetMap ผู้รับเพิ่มข้อมูลประกอบผ่านหน้าเว็บที่เปิดจาก SMS
 
-หน้าเดโมที่ `http://127.0.0.1:8765/` เปิดลิงก์จำลองได้ทันที หลังคุยกับ AI Voice และกด **ยืนยันแจ้งปัญหา** ให้เลือก **ส่ง SMS ให้ประชาชนปักหมุด GPS / แนบรูปถ่าย** ลิงก์จำลองแบบนี้ใช้ดูหน้าตาและทดลองปุ่มได้โดยไม่ส่งข้อความหรือบันทึกข้อมูลลงเซิร์ฟเวอร์
-
-สำหรับทดสอบบันทึกข้อมูลจริงโดยไม่ใช้เครดิต ให้รัน Backend ตาม API Guide 2.0 ที่พอร์ต 8000 แล้วรันบริการ SMS แยกจาก root ของ repository ด้วย PowerShell
-
-```powershell
-python -m pip install -r src/backend/requirements-sms.txt
-Copy-Item src/backend/sms.env.example src/backend/sms.env
-python -m uvicorn sms_evidence:application --factory --app-dir src/backend --host 127.0.0.1 --port 8766
-```
-
-เปิด `http://127.0.0.1:8765/?mode=live` โดยใช้ `SMS_MODE=mock` ตามตัวอย่าง เมื่อ Voicebot ยืนยันเลขคำร้องแล้ว ปุ่ม SMS จะสร้างลิงก์ของคำร้องนั้น กดอนุญาตตำแหน่ง ตรวจพิกัดและกดยืนยัน หรือเลือกรูป JPEG, PNG หรือ WebP ไม่เกิน 5 MB และกดยืนยันอัปโหลด
+โหมด `disabled` ให้ยืนยันคำร้องได้ตามปกติและปิดการส่ง SMS โหมด `mock` บน localhost ให้ทดลองกด **ส่ง SMS** แล้วเปิด **ลิงก์ SMS จำลอง** จากป๊อปอัปได้โดยไม่ใช้เครดิต โหมดจริงรองรับ SMSKUB และ ThaiBulkSMS
 
 **เปิดส่งจริงด้วย ThaiBulkSMS**
 
@@ -146,4 +113,10 @@ python -m uvicorn sms_evidence:application --factory --app-dir src/backend --hos
 3. หลัง HTTPS gateway ให้ใช้ origin เดียวกันกับหน้าเว็บสำหรับ `/api/v1/*` และ `/api/sms/*` เก็บบริการ SMS ไว้ในเครือข่ายส่วนตัว กำหนด `SMS_CONFIRM_SECRET` แบบสุ่มให้บริการ SMS และให้ gateway ลบ `X-SMS-Confirm-Secret` ที่ส่งมาจากฝั่งผู้ใช้ แล้วเพิ่ม header นี้เฉพาะคำขอ `/api/sms/confirm` ที่ผ่านการตรวจสิทธิ์ เปิด `deployment.enableCitizenVoice` ใน `src/frontend/config.mjs` เมื่อ gateway พร้อม แล้วเปิดหน้า `/?mode=live`
 4. รันบริการ SMS ใหม่ ยืนยันคำร้องจากมือถือทดสอบและส่ง SMS หนึ่งครั้ง หลังผู้ให้บริการรับคำขอ หน้าเว็บจะแสดงสถานะรับคำขอส่ง ให้ตรวจการได้รับจริงและการเปิดลิงก์บนมือถือแยกกัน
 
-ลิงก์สำหรับส่งพิกัดหรือรูปหมดอายุใน 7 วัน ระบบจำกัดหนึ่งคำขอ SMS ต่อคำร้องและมีเพดานต่อวัน ข้อมูลจัดเก็บตามเลขคำร้องใน SQLite ที่ `SMS_DB_PATH` ค่าเริ่มต้นแยกไฟล์ตามโหมดใน `data/` ทีม Backend สามารถอ่านผ่าน `GET /api/sms/admin/evidence/{ticket_id}` และ `GET /api/sms/admin/evidence/{ticket_id}/photo` โดยส่ง `Authorization: Bearer <SMS_ADMIN_TOKEN>` จากฝั่งเซิร์ฟเวอร์เท่านั้น การแนบข้อมูลกลับเข้า Core Backend ต้องเชื่อมเพิ่มเมื่อมี API รับข้อมูลประกอบคำร้อง
+**เปิดส่งจริงด้วย SMSKUB**
+
+1. สร้าง API Key จาก Console ของ SMSKUB แล้วตรวจชื่อผู้ส่งด้วย `GET /api/senders/usable` และยอดเครดิตด้วย `GET /api/transactions/balance` ที่ `https://console.sms-kub.com` ใช้ header `key` ตาม Postman Collection ซึ่งทดสอบกับคีย์จาก Console แล้ว [Postman Collection](https://documenter.getpostman.com/view/9887776/2sAYXCjyAF)
+2. ตั้ง `SMS_MODE=smskub`, `SMSKUB_API_KEY` และ `SMSKUB_SENDER` ในไฟล์ `src/backend/sms.env` จากนั้นตั้ง `SMS_ALLOWED_RECIPIENTS`, `SMS_PUBLIC_ORIGIN`, `SMS_VOICEBOT_ORIGIN` และ `SMS_CONFIRM_SECRET` พร้อม HTTPS gateway ตามขั้นตอนด้านบน โดย URL สำหรับลิงก์เพิ่มเติมต้องผ่านการอนุมัติคู่กับชื่อผู้ส่ง [เงื่อนไข URL ของ SMSKUB](https://sms-kub.com/faq/)
+3. รีสตาร์ตบริการ SMS แล้วทดสอบจาก Widget หลังยืนยันคำร้อง บริการใช้ Quick Send `POST /api/messages` และตรวจ `code`, `data.send` และ `data.block` ก่อนแสดงว่ารับคำขอ ตัวอย่าง Postman แสดงว่า HTTP 200 อาจมาพร้อมผลปลายทางถูกบล็อกหรือเครดิตไม่พอ และ Quick Send อาจคืนเฉพาะจำนวนข้อความโดยไม่มี message ID [Postman Collection](https://documenter.getpostman.com/view/9887776/2sAYXCjyAF)
+
+ลิงก์สำหรับส่งหลักฐานหมดอายุใน 7 วัน ระบบจำกัดหนึ่งคำขอ SMS ต่อคำร้องและมีเพดานต่อวัน ข้อมูลจัดเก็บตามเลขคำร้องใน SQLite ที่ `SMS_DB_PATH` ค่าเริ่มต้นแยกไฟล์ตามโหมดใน `data/` ทีม Backend สามารถอ่านผ่าน `GET /api/sms/admin/evidence/{ticket_id}` และ `GET /api/sms/admin/evidence/{ticket_id}/photo` โดยส่ง `Authorization: Bearer <SMS_ADMIN_TOKEN>` จากฝั่งเซิร์ฟเวอร์เท่านั้น การแนบข้อมูลกลับเข้า Core Backend ต้องเชื่อมเพิ่มเมื่อมี API รับข้อมูลประกอบคำร้อง

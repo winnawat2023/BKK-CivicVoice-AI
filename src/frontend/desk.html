@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BKK CivicVoice AI · โต๊ะเจ้าหน้าที่</title>
+  <link rel="stylesheet" href="./tailwind.css">
+  <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="./desk.css">
+  <script type="module" src="./desk.mjs"></script>
+</head>
+<body class="desk-page">
+  <header class="desk-top">
+    <div class="desk-top-inner">
+      <div class="brand"><span class="logo" aria-hidden="true">BKK</span><strong>BKK CivicVoice AI</strong><span class="tag">1555</span></div>
+      <div class="footer-links"><a href="./">หน้า AI Voice</a><a href="./tracking/">Citizen Tracking</a></div>
+    </div>
+  </header>
+  <main class="desk">
+    <header class="desk-heading">
+      <div>
+        <h1>โต๊ะเจ้าหน้าที่รับสาย</h1>
+        <p class="muted">เลือกสายที่ส่งข้อมูลเข้า Middleware หรือเปิด Agent Copilot ด้วย Conversation ID จาก Genesys</p>
+        <p class="muted">เบอร์รับสายทดสอบ 02-096-6763 · Genesys org: ark-insights</p>
+      </div>
+    </header>
+    <div class="desk-layout">
+      <div class="desk-main grid gap-3">
+        <section class="desk-panel" aria-labelledby="queue-heading">
+          <div class="panel-heading"><h2 id="queue-heading">รายการสาย</h2></div>
+          <div class="desk-body">
+            <p class="muted" id="monitor-status" role="status">กำลังเชื่อมต่อ Middleware…</p>
+            <form id="interaction-form" class="desk-controls flex flex-wrap gap-2">
+              <input id="interaction-input" aria-label="Genesys Conversation ID" placeholder="Genesys Conversation ID" maxlength="128" required>
+              <button type="submit" class="primary">เปิด Agent Copilot</button>
+            </form>
+          </div>
+          <div class="queue" id="queue" role="group" aria-label="เลือกสายที่ได้รับ transcript"></div>
+          <div class="desk-body" id="desk-demo-controls" hidden>
+            <button type="button" id="desk-demo-transcript" disabled>เพิ่ม Transcript ตัวอย่าง</button>
+          </div>
+        </section>
+        <section class="desk-panel" aria-labelledby="call-heading">
+          <div class="panel-heading">
+            <h2 id="call-heading">สายที่เลือก</h2>
+            <span class="tag" id="call-state" role="status">ยังไม่ได้เลือกสาย</span>
+          </div>
+          <div class="desk-body">
+            <h3 class="call-title" id="call-title"></h3>
+            <dl class="call-meta">
+              <div><dt>Interaction ID</dt><dd id="call-id" class="tabular-nums"></dd></div>
+              <div><dt>หมายเลขผู้โทร</dt><dd id="call-ani" class="tabular-nums"></dd></div>
+              <div><dt>ภาษา</dt><dd id="call-language"></dd></div>
+            </dl>
+          </div>
+        </section>
+      </div>
+    <section class="embed" aria-labelledby="embed-heading">
+      <header class="popup-header">
+        <img class="ark-logo" src="./assets/ark-insights.png" alt="ARK Insights" width="66" height="41">
+        <div class="popup-brand">
+          <h2 id="embed-heading">Agent Copilot</h2>
+          <span class="tag" id="popup-state">รอเลือกสาย</span>
+        </div>
+      </header>
+      <div class="popup-toolbar">
+        <span>สำหรับเจ้าหน้าที่</span>
+        <label class="frame-size">ความกว้าง
+          <select id="frame-size">
+            <option value="400">400 px</option>
+            <option value="450" selected>450 px</option>
+            <option value="500">500 px</option>
+          </select>
+        </label>
+      </div>
+      <div class="frame-placeholder" id="frame-placeholder">
+        <strong>ยังไม่ได้เปิดสาย</strong>
+        <p class="muted">เลือกสายจากรายการหรือระบุ Genesys Conversation ID</p>
+      </div>
+      <iframe id="copilot" title="BKK CivicVoice AI Agent Copilot" hidden></iframe>
+    </section>
+    </div>
+  </main>
+</body>
+</html>

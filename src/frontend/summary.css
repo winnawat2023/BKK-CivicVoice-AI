@@ -1,0 +1,8 @@
+.summary-card { border-color: #dce6f5; border-radius: 16px; box-shadow: 0 2px 5px #344f7810; }
+.summary-card .card-title { display: flex; flex-wrap: wrap; align-items: center; gap: .42rem; color: #171e3d; background: white; border-bottom: 0; padding-bottom: .12rem; }
+.card-icon { display: inline-grid; place-items: center; width: 25px; height: 25px; color: #1950bb; background: #eef4ff; border-radius: 8px; font: 700 .76rem/1 "Sarabun", sans-serif; }
+.card-icon.violet { color: white; background: linear-gradient(140deg, #a899f9, #8172e6); }
+.summary-card .summary li::marker { color: #2459d5; }
+.summary-card .tag.critical { background: #fee2e2; color: #991b1b; }
+.summary-card .tag.high { background: #fef3c7; color: #92400e; }
+.district-card { background: white; border: 1px solid #dce6f5; border-radius: 14px; box-shadow: 0 2px 5px #344f7810; padding: .62rem .72rem; display: flex; align-items: center; gap: .55rem; overflow-wrap: anywhere; }
