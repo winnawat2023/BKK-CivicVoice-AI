@@ -1,0 +1,19 @@
+.copilot-widget { background: #edf3ff; color: #0f172a; }
+.copilot-widget .shell { background: linear-gradient(175deg, #edf3ff, #f1f6ff); }
+.copilot-widget .top { background: linear-gradient(125deg, #edf4ff, #ccddff); border-color: #d6e3f7; }
+.widget-icon { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 10px; background: linear-gradient(140deg, #b8affd, #766ce2); color: white; font-size: 1.15rem; }
+.copilot-widget .card { border-color: #dce6f5; border-radius: 16px; box-shadow: 0 2px 5px #344f7810; }
+.copilot-widget .card-title { display: flex; flex-wrap: wrap; align-items: center; gap: .42rem; color: #171e3d; background: #ffffff; border-bottom: 0; padding-bottom: .12rem; }
+.copilot-widget .tag.ai { border-inline-start: 3px solid var(--cyan-accent); }
+.copilot-widget .tag.live::before { content: ""; display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--emerald); margin-inline-end: .35rem; }
+.copilot-widget .segment { background: #eff3fd; border-radius: 11px; }
+.copilot-widget .segment.caller { background: #edeafe; }
+.copilot-widget .footer { background: #edf3ff; border-color: #dce6f5; }
+.copilot-widget button.primary:not(:disabled) { border: 1px solid #1049d4; background: linear-gradient(160deg, #286af2, #114bd6 72%, #1047c6); box-shadow: 0 2px 4px #2044ad24; }
+.copilot-widget button.primary:hover:not(:disabled) { background: #1142bd; }
+.copilot-widget button { border-radius: 12px; }
+.copilot-widget #dispatch:not(:disabled)::before { content: "➤"; display: inline-block; transform: rotate(-22deg); margin-inline-end: .52rem; }
+.embedded-widget .top { padding: .45rem .8rem .55rem; background: #edf3ff; }
+.embedded-widget .top .brand { display: none; }
+.embedded-widget .top .meta { margin-top: .15rem; }
+.embedded-widget .main { padding-top: .55rem; }
