@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pitch Deck: BKK CivicVoice AI (ARK Insights)</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700;800&family=Prompt:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Sarabun', sans-serif; background-color: #0f172a; color: #f8fafc; }
+        h1, h2, h3, .font-heading { font-family: 'Prompt', sans-serif; }
+        .slide { display: none; min-height: 100vh; }
+        .slide.active { display: flex; }
+    </style>
+</head>
+<body class="flex flex-col justify-between min-h-screen selection:bg-blue-500 selection:text-white">
+
+    <!-- Top Navigation Bar -->
+    <header class="w-full bg-slate-900/80 backdrop-blur-md border-b border-slate-800 px-6 py-4 flex items-center justify-between z-50">
+        <div class="flex items-center space-x-3">
+            <span class="w-3 h-3 bg-blue-500 rounded-full animate-ping"></span>
+            <span class="w-3 h-3 bg-blue-500 rounded-full -ml-4"></span>
+            <span class="text-sm font-bold tracking-wider text-slate-200 uppercase font-heading">BKK CivicVoice AI</span>
+            <span class="text-xs bg-blue-950 text-blue-400 border border-blue-800 px-2.5 py-0.5 rounded-full font-semibold">ARK Insights</span>
+        </div>
+        <div class="flex items-center space-x-4">
+            <span class="text-xs text-slate-400 font-mono">Slide <span id="currentSlideNum" class="text-blue-400 font-bold text-sm">1</span> / 8</span>
+            <div class="flex space-x-1">
+                <button onclick="prevSlide()" class="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 transition">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                </button>
+                <button onclick="nextSlide()" class="p-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-white transition shadow-lg shadow-blue-500/30">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Presentation Container -->
+    <main class="flex-1 flex items-center justify-center p-6 md:p-12 relative overflow-hidden">
+        
+        <!-- ==================== SLIDE 1: COVER ==================== -->
+        <section id="slide-1" class="slide active flex-col items-center justify-center text-center max-w-5xl mx-auto w-full">
+            <div class="inline-flex items-center space-x-2 bg-blue-900/40 border border-blue-500/30 px-4 py-1.5 rounded-full text-blue-300 text-xs font-semibold mb-6">
+                <span>🏆 AI Skill Wars 2026 : AI For Bangkok</span>
+                <span>•</span>
+                <span>Theme 02: Civic & Public Service Access</span>
+            </div>
+            <h1 class="text-5xl md:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-300 to-purple-400 mb-6 leading-tight">
+                BKK CivicVoice AI
+            </h1>
+            <p class="text-xl md:text-2xl text-slate-300 max-w-3xl mb-10 font-light">
+                ยกระดับสายด่วน กทม. 1555 สู่ <span class="text-blue-400 font-semibold">AI-First Contact Center</span> เพื่อคนกรุงเทพฯ ทุกกลุ่ม<br>
+                <span class="text-sm md:text-base text-slate-400 mt-2 block">"รับสายทันที 0 วินาที คัดกรองแม่นยำ ปิดเคสรวดเร็ว ด้วยภาษาพูดธรรมชาติ"</span>
+            </p>
+            <div class="flex flex-wrap items-center justify-center gap-6 pt-4 border-t border-slate-800/80 w-full max-w-xl text-xs text-slate-400 font-mono">
+                <div>🏢 Team: <span class="text-slate-200 font-bold">ARK Insights Co., Ltd.</span></div>
+                <div>⚡ Tech: <span class="text-slate-200 font-bold">Genesys Cloud + Typhoon AI</span></div>
+            </div>
+        </section>
+
+        <!-- ==================== SLIDE 2: 3M DATA EVIDENCE ==================== -->
+        <section id="slide-2" class="slide flex-col justify-center max-w-5xl mx-auto w-full">
+            <div class="text-xs font-semibold uppercase text-blue-400 tracking-wider mb-2">01 / The Reality & Data Evidence</div>
+            <h2 class="text-3xl md:text-4xl font-bold text-slate-100 mb-4">
+                3 ล้านเสียงสะท้อนจากคนกรุง: ปัญหาซ้ำซากและคอขวดที่แท้จริง
+            </h2>
+            <p class="text-slate-400 text-sm mb-8">วิเคราะห์เชิงประจักษ์จาก Open Data กทม. (Traffy Fondue & สถิติ 1555 ย้อนหลัง 5 ปี รวม 3,012,468 รายการ)</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <div class="bg-slate-800/60 border border-slate-700/60 p-6 rounded-2xl relative overflow-hidden">
+                    <div class="text-4xl font-black text-blue-400 mb-2 font-heading">3,012,468</div>
+                    <div class="text-sm font-semibold text-slate-200 mb-1">เรื่องร้องเรียนทั้งหมด</div>
+                    <div class="text-xs text-slate-400">ข้อมูลจริงสะสม 5 ปี (2565–2569) สูงสุดในประวัติศาสตร์ กทม.</div>
+                </div>
+                <div class="bg-slate-800/60 border border-slate-700/60 p-6 rounded-2xl relative overflow-hidden">
+                    <div class="text-4xl font-black text-amber-400 mb-2 font-heading">~300,000</div>
+                    <div class="text-sm font-semibold text-slate-200 mb-1">Top 3 ปัญหาหลัก</div>
+                    <div class="text-xs text-slate-400">ถนนชำรุด (9.3 หมื่น) + ทางเท้าพัง (8.2 หมื่น) + ผิดกฎจราจร (8.0 หมื่น)</div>
+                </div>
+                <div class="bg-slate-800/60 border border-slate-700/60 p-6 rounded-2xl relative overflow-hidden">
+                    <div class="text-4xl font-black text-rose-400 mb-2 font-heading">25.3%</div>
+                    <div class="text-sm font-semibold text-slate-200 mb-1">อัตราเรื่องค้างท่อสะสม</div>
+                    <div class="text-xs text-slate-400">เขตคลองเตย ค้างกว่า 8,300 เคส (สำเร็จ 71.8%) และเขตจตุจักร ค้าง 1.1 หมื่นเคส</div>
+                </div>
+            </div>
+
+            <div class="bg-gradient-to-r from-blue-950/60 to-indigo-950/60 border border-blue-500/30 p-5 rounded-xl">
+                <div class="text-sm text-blue-200 font-semibold mb-1">💡 Key Insight: คอขวดที่แท้จริงคืออะไร?</div>
+                <div class="text-xs text-slate-300 leading-relaxed">
+                    ปัญหาไม่ได้อยู่ที่เจ้าหน้าที่ไม่ลงพื้นที่ แต่เกิดจาก <strong class="text-white">"ความล่าช้าในการคัดกรองหมวดหมู่ และการส่งเรื่องผิดฝ่ายตั้งแต่ต้น"</strong> รวมถึงการรับเรื่องผ่านเสียงที่ข้อมูลพิกัดตกหล่น
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== SLIDE 3: THE UNSOLVED GAP ==================== -->
+        <section id="slide-3" class="slide flex-col justify-center max-w-5xl mx-auto w-full">
+            <div class="text-xs font-semibold uppercase text-blue-400 tracking-wider mb-2">02 / The Unsolved Gap</div>
+            <h2 class="text-3xl md:text-4xl font-bold text-slate-100 mb-4">
+                ทำไมแอปพลิเคชันอย่างเดียวจึงไม่พอ และทำไมสายด่วน 1555 จึงสายไหม้?
+            </h2>
+            <p class="text-slate-400 text-sm mb-8">ช่องว่างขนาดใหญ่ระหว่างโลกดิจิทัลกับพฤติกรรมจริงของประชาชน</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-slate-800/50 border border-slate-700/50 p-6 rounded-2xl">
+                    <div class="w-12 h-12 bg-rose-500/20 text-rose-400 rounded-xl flex items-center justify-center text-xl mb-4 font-bold">1</div>
+                    <h3 class="text-base font-bold text-slate-100 mb-2 font-heading">Digital Exclusion</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        ผู้สูงอายุ คนขับรถ และประชาชนทั่วไป <strong class="text-slate-200">ไม่สะดวกเปิดแอป ถ่ายรูป ปักหมุด GPS</strong> ในสถานการณ์ฉุกเฉิน แต่ทุกคน "สะดวกโทร 1555"
+                    </p>
+                </div>
+                <div class="bg-slate-800/50 border border-slate-700/50 p-6 rounded-2xl">
+                    <div class="w-12 h-12 bg-amber-500/20 text-amber-400 rounded-xl flex items-center justify-center text-xl mb-4 font-bold">2</div>
+                    <h3 class="text-base font-bold text-slate-100 mb-2 font-heading">คู่สายเต็มช่วงวิกฤต</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        ฝนตกน้ำท่วมคนโทรพร้อมกันหลายร้อยสาย ต้องถือสายรอนาน 10-15 นาที ที่สำคัญ <strong class="text-slate-200">30-40% โทรมาเพียงถามระเบียบราชการ</strong> (ทำบัตรประชาชนที่ไหน) แย่งคิวสายฉุกเฉิน
+                    </p>
+                </div>
+                <div class="bg-slate-800/50 border border-slate-700/50 p-6 rounded-2xl">
+                    <div class="w-12 h-12 bg-purple-500/20 text-purple-400 rounded-xl flex items-center justify-center text-xl mb-4 font-bold">3</div>
+                    <h3 class="text-base font-bold text-slate-100 mb-2 font-heading">เสียงพูดไม่มี GPS</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        คนแจ้งบอกพิกัดด้วยคำพูดปากเปล่า: <em>"หน้าตึกสีฟ้า ซอยแคบๆ ลาดพร้าว"</em> เจ้าหน้าที่เขตลงพื้นที่จริงหาไม่เจอ เคสถูกดีดไปมากลายเป็นเรื่องค้างท่อ
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== SLIDE 4: ARCHITECTURE ==================== -->
+        <section id="slide-4" class="slide flex-col justify-center max-w-5xl mx-auto w-full">
+            <div class="text-xs font-semibold uppercase text-blue-400 tracking-wider mb-2">03 / Solution Architecture</div>
+            <h2 class="text-3xl md:text-4xl font-bold text-slate-100 mb-3">
+                สถาปัตยกรรมระบบ BKK CivicVoice AI
+            </h2>
+            <p class="text-slate-400 text-sm mb-6">เชื่อมโยง Contact Center ระดับ Enterprise สู่โมเดลภาษาไทยบนเซิร์ฟเวอร์ DGX</p>
+
+            <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl font-mono text-xs text-slate-300">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4 text-center">
+                    <div class="bg-slate-800/80 border border-blue-500/40 p-4 rounded-xl">
+                        <div class="text-blue-400 font-bold mb-2">1. CITIZEN VOICE</div>
+                        <div class="text-[11px] text-slate-300">โทรเข้าสายด่วน 1555 (Inbound PSTN / Mobile)</div>
+                    </div>
+                    <div class="bg-slate-800/80 border border-indigo-500/40 p-4 rounded-xl">
+                        <div class="text-indigo-400 font-bold mb-2">2. GENESYS CLOUD CX</div>
+                        <div class="text-[11px] text-slate-300">Architect Inbound Flow + Data Action / Webhook (Org: ark-insights)</div>
+                    </div>
+                    <div class="bg-slate-800/80 border border-purple-500/40 p-4 rounded-xl">
+                        <div class="text-purple-400 font-bold mb-2">3. THAI AI ENGINE</div>
+                        <div class="text-[11px] text-slate-300">Faster-Whisper (ASR) + Typhoon-1.5X-8B บน DGX 101</div>
+                    </div>
+                    <div class="bg-slate-800/80 border border-emerald-500/40 p-4 rounded-xl">
+                        <div class="text-emerald-400 font-bold mb-2">4. AGENT COPILOT</div>
+                        <div class="text-[11px] text-slate-300">Interaction Widget เด้งสรุป 3 บรรทัด + 1-Click Dispatch เข้า 50 เขต</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                <div class="bg-slate-800/40 border border-slate-700/40 p-4 rounded-xl">
+                    <span class="text-blue-400 font-bold">📡 Enterprise Security:</span> HTTPS/WSS ตรงสู่โดเมน <code class="text-white">voiceai-demo.ark-insights.com</code> (Let's Encrypt SSL)
+                </div>
+                <div class="bg-slate-800/40 border border-slate-700/40 p-4 rounded-xl">
+                    <span class="text-emerald-400 font-bold">⚡ Ultra-Low Latency:</span> End-to-End Response Time ต่ำกว่า 1 วินาที ด้วยพลังประมวลผล NVIDIA GPU
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== SLIDE 5: AI INTEGRATION DEPTH ==================== -->
+        <section id="slide-5" class="slide flex-col justify-center max-w-5xl mx-auto w-full">
+            <div class="text-xs font-semibold uppercase text-blue-400 tracking-wider mb-2">04 / AI Precision & Depth</div>
+            <h2 class="text-3xl md:text-4xl font-bold text-slate-100 mb-3">
+                เข้าใจภาษาพูดชาวบ้าน แปลงเป็น Ticket ราชการที่มีโครงสร้างชัดเจน
+            </h2>
+            <p class="text-slate-400 text-sm mb-6">Typhoon AI ถอดรหัสคำพูดธรรมชาติเป็น Actionable Structured Data ทันที</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+                <!-- Natural Voice Input -->
+                <div class="bg-slate-800/50 border border-slate-700/60 p-5 rounded-2xl flex flex-col justify-between">
+                    <div>
+                        <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3 flex items-center">
+                            <span class="w-2.5 h-2.5 bg-rose-500 rounded-full mr-2"></span>
+                            เสียงพูดโทรศัพท์จริงของประชาชน (Raw Input)
+                        </div>
+                        <blockquote class="text-sm text-slate-200 italic bg-slate-900/80 p-4 rounded-xl border border-slate-800 leading-relaxed">
+                            "เนี่ย ขับรถมาแถวซอยสุขุมวิท 50 มีท่อระบายน้ำแตก น้ำเอ่อท่วมถนน มอเตอร์ไซค์ล้มไปคันนึงแล้ว อันตรายมาก ช่วยส่งคนมาดูด่วนเลย!"
+                        </blockquote>
+                    </div>
+                    <div class="text-xs text-slate-400 mt-4">
+                        🎙️ ถอดเสียงด้วย: <span class="text-blue-400 font-semibold">Faster-Whisper (large-v3-turbo)</span> ใน 0.15 วิ
+                    </div>
+                </div>
+
+                <!-- Structured AI Output -->
+                <div class="bg-slate-900/90 border border-blue-500/40 p-5 rounded-2xl font-mono text-xs">
+                    <div class="text-xs font-bold text-blue-400 uppercase tracking-wider mb-3 flex items-center">
+                        <span class="w-2.5 h-2.5 bg-emerald-500 rounded-full mr-2"></span>
+                        Typhoon-1.5X-8B Structured JSON
+                    </div>
+                    <pre class="text-slate-300 overflow-x-auto text-[11px] leading-relaxed bg-black/40 p-3 rounded-lg border border-slate-800">
+{
+  "intent": "complaint",
+  "category": "ถนนและท่อระบายน้ำ",
+  "district": "คลองเตย",
+  "urgency": "HIGH (มีอุบัติเหตุและคำว่าอันตราย)",
+  "summary_th": "ท่อระบายน้ำแตก น้ำท่วมขังผิวถนน ซอยสุขุมวิท 50 เกิดอุบัติเหตุแล้ว",
+  "target_dept": "ฝ่ายโยธา และฝ่ายระบายน้ำ เขตคลองเตย",
+  "estimated_sla_days": 3
+}</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== SLIDE 6: LIVE DEMO ==================== -->
+        <section id="slide-6" class="slide flex-col justify-center max-w-5xl mx-auto w-full">
+            <div class="text-xs font-semibold uppercase text-blue-400 tracking-wider mb-2">05 / Live Demonstration</div>
+            <h2 class="text-3xl md:text-4xl font-bold text-slate-100 mb-3">
+                พิสูจน์ด้วยการโทรจริง สดๆ ต่อหน้าคณะกรรมการ
+            </h2>
+            <p class="text-slate-400 text-sm mb-6">สาธิต 2 Scenario หลักที่แก้ปัญหา กทม. ได้อย่างเด็ดขาด</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-slate-800/40 border border-blue-500/30 p-6 rounded-2xl">
+                    <div class="text-xs font-bold text-blue-400 mb-1">SCENARIO A (Zero Human Load)</div>
+                    <h3 class="text-lg font-bold text-white mb-3 font-heading">สอบถามระเบียบราชการ กทม.</h3>
+                    <p class="text-xs text-slate-300 leading-relaxed mb-4">
+                        โทรศัพท์ถาม: <em>"วันเสาร์เขตจตุจักรเปิดทำบัตรประชาชนไหม"</em><br>
+                        ➡️ AI ตรวจจับ Intent แล้วดึง RAG คู่มือ กทม. ตอบกลับด้วยเสียงพูดจบในสายทันที <strong class="text-emerald-400">ลดภาระสาย 1555 ได้ 30-40%</strong>
+                    </p>
+                    <div class="text-xs bg-slate-900 p-2.5 rounded-lg border border-slate-800 text-slate-400">
+                        สถานะ: <span class="text-emerald-400 font-bold">อัตโนมัติ 100% ไม่ต้องใช้เจ้าหน้าที่</span>
+                    </div>
+                </div>
+
+                <div class="bg-slate-800/40 border border-purple-500/30 p-6 rounded-2xl">
+                    <div class="text-xs font-bold text-purple-400 mb-1">SCENARIO B (Agent Copilot)</div>
+                    <h3 class="text-lg font-bold text-white mb-3 font-heading">แจ้งเหตุเดือดร้อนฉุกเฉิน</h3>
+                    <p class="text-xs text-slate-300 leading-relaxed mb-4">
+                        โทรศัพท์แจ้งท่อแตก สุขุมวิท 50<br>
+                        ➡️ หน้าจอ Genesys Agent Desktop เด้ง <strong class="text-purple-400">Live Transcript + สรุป 3 บรรทัด</strong><br>
+                        ➡️ เจ้าหน้าที่กดปุ่ม <strong class="text-blue-400">"1-Click Dispatch ส่งเรื่องเข้าเขตคลองเตย"</strong> จบงานใน 1 วินาที
+                    </p>
+                    <div class="text-xs bg-slate-900 p-2.5 rounded-lg border border-slate-800 text-slate-400">
+                        สถานะ: <span class="text-blue-400 font-bold">Human-in-the-loop ลดเวลาคุยสายลง 50%</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== SLIDE 7: BUSINESS & SOCIAL IMPACT ==================== -->
+        <section id="slide-7" class="slide flex-col justify-center max-w-5xl mx-auto w-full">
+            <div class="text-xs font-semibold uppercase text-blue-400 tracking-wider mb-2">06 / Impact to Bangkok City</div>
+            <h2 class="text-3xl md:text-4xl font-bold text-slate-100 mb-3">
+                สร้างผลกระทบจริง ยกระดับคุณภาพชีวิตคนเมืองอย่างยั่งยืน
+            </h2>
+            <p class="text-slate-400 text-sm mb-6">วัดผลได้จริงทั้งในมุมของประชาชนและฝ่ายบริหารกรุงเทพมหานคร</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- For Citizens -->
+                <div class="bg-gradient-to-br from-slate-800/80 to-slate-900/80 border border-slate-700/60 p-6 rounded-2xl">
+                    <h3 class="text-base font-bold text-blue-400 mb-4 flex items-center font-heading">
+                        <span class="mr-2">👥</span> เพื่อประชาชนชาวกรุงเทพฯ ทุกกลุ่ม
+                    </h3>
+                    <ul class="text-xs space-y-3 text-slate-300">
+                        <li class="flex items-start">
+                            <span class="text-blue-400 font-bold mr-2">✓</span>
+                            <span><strong>Zero Queue Waiting:</strong> โทร 1555 ติดทันที ไม่มีสายไม่ว่าง ไม่ต้องถือสายรอคิว</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-blue-400 font-bold mr-2">✓</span>
+                            <span><strong>Digital Inclusion:</strong> ผู้สูงอายุ คนขับรถ และผู้พิการ เข้าถึงบริการรัฐได้อย่างเท่าเทียมผ่านเสียงพูด</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-blue-400 font-bold mr-2">✓</span>
+                            <span><strong>Transparent Tracking:</strong> โทรกลับมาเบอร์เดิม AI จำเบอร์ได้ แจ้งความคืบหน้าเรื่องที่แจ้งทันที</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- For BMA -->
+                <div class="bg-gradient-to-br from-slate-800/80 to-slate-900/80 border border-slate-700/60 p-6 rounded-2xl">
+                    <h3 class="text-base font-bold text-emerald-400 mb-4 flex items-center font-heading">
+                        <span class="mr-2">🏛️</span> เพื่อการบริหารงานกรุงเทพมหานคร (BMA)
+                    </h3>
+                    <ul class="text-xs space-y-3 text-slate-300">
+                        <li class="flex items-start">
+                            <span class="text-emerald-400 font-bold mr-2">✓</span>
+                            <span><strong>ลด AHT ของเจ้าหน้าที่ลง 50%:</strong> ไม่ต้องพิมพ์สรุปเอง AI คัดกรองและออก Ticket อัตโนมัติ</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-emerald-400 font-bold mr-2">✓</span>
+                            <span><strong>ลดภาระสาย 1555 ลง 30-40%:</strong> สายถามข้อมูลระเบียบ กทม. ถูก AI ตอบจบในสายทันที</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-emerald-400 font-bold mr-2">✓</span>
+                            <span><strong>ลดเรื่องค้างท่อใน 50 เขต:</strong> ปัญหาถูกส่งตรงฝ่ายตรงเขตตั้งแต่ครั้งแรก ข้อมูลพิกัดชัดเจน</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== SLIDE 8: TEAM & ROADMAP ==================== -->
+        <section id="slide-8" class="slide flex-col justify-center max-w-5xl mx-auto w-full">
+            <div class="text-xs font-semibold uppercase text-blue-400 tracking-wider mb-2">07 / Team & Future Roadmap</div>
+            <h2 class="text-3xl md:text-4xl font-bold text-slate-100 mb-3">
+                ทีมงานมืออาชีพ พร้อมขยายผลสู่ 50 สำนักงานเขตได้จริง
+            </h2>
+            <p class="text-slate-400 text-sm mb-6">ไม่ใช่แค่แบบจำลอง Hackathon แต่วางอยู่บน Production Architecture</p>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+                <div class="bg-slate-800/50 border border-slate-700/50 p-4 rounded-xl text-center">
+                    <div class="w-10 h-10 bg-blue-500/20 text-blue-400 rounded-full flex items-center justify-center mx-auto mb-2 text-sm font-bold font-heading">CH</div>
+                    <div class="text-xs font-bold text-slate-100">ชัยพร หอมเทียน</div>
+                    <div class="text-[10px] text-slate-400">Team Lead & Pitch Master</div>
+                </div>
+                <div class="bg-slate-800/50 border border-slate-700/50 p-4 rounded-xl text-center">
+                    <div class="w-10 h-10 bg-indigo-500/20 text-indigo-400 rounded-full flex items-center justify-center mx-auto mb-2 text-sm font-bold font-heading">WB</div>
+                    <div class="text-xs font-bold text-slate-100">วัชระ เกิดลาภ</div>
+                    <div class="text-[10px] text-slate-400">Genesys Cloud CX Eng.</div>
+                </div>
+                <div class="bg-slate-800/50 border border-slate-700/50 p-4 rounded-xl text-center">
+                    <div class="w-10 h-10 bg-purple-500/20 text-purple-400 rounded-full flex items-center justify-center mx-auto mb-2 text-sm font-bold font-heading">PS</div>
+                    <div class="text-xs font-bold text-slate-100">พีรพันธ์ สินอยู่</div>
+                    <div class="text-[10px] text-slate-400">AI Engine & Data Eng.</div>
+                </div>
+                <div class="bg-slate-800/50 border border-slate-700/50 p-4 rounded-xl text-center">
+                    <div class="w-10 h-10 bg-emerald-500/20 text-emerald-400 rounded-full flex items-center justify-center mx-auto mb-2 text-sm font-bold font-heading">AP</div>
+                    <div class="text-xs font-bold text-slate-100">อิทธิพล พวงสุพรรณ</div>
+                    <div class="text-[10px] text-slate-400">Frontend Widget Eng.</div>
+                </div>
+            </div>
+
+            <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl text-xs text-slate-300">
+                <div class="font-bold text-blue-400 mb-2 font-heading">Roadmap การต่อยอดสู่ระดับมหานคร:</div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-[11px]">
+                    <div><strong>Phase 1 (Now):</strong> Inbound Voice Bot + Agent Copilot 50 เขต</div>
+                    <div><strong>Phase 2:</strong> Proactive Call โทรแจ้งผลการแก้ไขให้ประชาชน</div>
+                    <div><strong>Phase 3:</strong> Predictive City Maintenance ป้องกันเหตุก่อนเกิด</div>
+                </div>
+            </div>
+
+            <div class="text-center mt-6 text-xs text-slate-400 italic">
+                "BKK CivicVoice AI — ให้ทุกเสียงของคนกรุงเทพฯ ได้รับการรับฟังและแก้ไขในทันที"
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Bottom Navigation Controls -->
+    <footer class="w-full bg-slate-900/60 border-t border-slate-800/80 px-6 py-3 flex items-center justify-between text-xs text-slate-400">
+        <div>กด <kbd class="px-2 py-0.5 bg-slate-800 border border-slate-700 rounded text-slate-300">←</kbd> หรือ <kbd class="px-2 py-0.5 bg-slate-800 border border-slate-700 rounded text-slate-300">→</kbd> เพื่อเปลี่ยนสไลด์</div>
+        <div class="flex space-x-1">
+            <span onclick="goToSlide(1)" class="w-3 h-3 rounded-full bg-blue-500 cursor-pointer slide-indicator"></span>
+            <span onclick="goToSlide(2)" class="w-3 h-3 rounded-full bg-slate-700 cursor-pointer slide-indicator"></span>
+            <span onclick="goToSlide(3)" class="w-3 h-3 rounded-full bg-slate-700 cursor-pointer slide-indicator"></span>
+            <span onclick="goToSlide(4)" class="w-3 h-3 rounded-full bg-slate-700 cursor-pointer slide-indicator"></span>
+            <span onclick="goToSlide(5)" class="w-3 h-3 rounded-full bg-slate-700 cursor-pointer slide-indicator"></span>
+            <span onclick="goToSlide(6)" class="w-3 h-3 rounded-full bg-slate-700 cursor-pointer slide-indicator"></span>
+            <span onclick="goToSlide(7)" class="w-3 h-3 rounded-full bg-slate-700 cursor-pointer slide-indicator"></span>
+            <span onclick="goToSlide(8)" class="w-3 h-3 rounded-full bg-slate-700 cursor-pointer slide-indicator"></span>
+        </div>
+    </footer>
+
+    <!-- Interactive Slide Script -->
+    <script>
+        let currentSlide = 1;
+        const totalSlides = 8;
+
+        function showSlide(n) {
+            if (n < 1) n = 1;
+            if (n > totalSlides) n = totalSlides;
+            currentSlide = n;
+
+            // Hide all slides
+            for (let i = 1; i <= totalSlides; i++) {
+                document.getElementById(`slide-${i}`).classList.remove('active');
+            }
+            // Show active slide
+            document.getElementById(`slide-${currentSlide}`).classList.add('active');
+            document.getElementById('currentSlideNum').innerText = currentSlide;
+
+            // Update indicators
+            const indicators = document.querySelectorAll('.slide-indicator');
+            indicators.forEach((ind, idx) => {
+                if (idx + 1 === currentSlide) {
+                    ind.className = "w-3 h-3 rounded-full bg-blue-500 cursor-pointer slide-indicator";
+                } else {
+                    ind.className = "w-3 h-3 rounded-full bg-slate-700 cursor-pointer slide-indicator";
+                }
+            });
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides) showSlide(currentSlide + 1);
+        }
+
+        function prevSlide() {
+            if (currentSlide > 1) showSlide(currentSlide - 1);
+        }
+
+        function goToSlide(n) {
+            showSlide(n);
+        }
+
+        // Keyboard Controls
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                prevSlide();
+            }
+        });
+    </script>
+</body>
+</html>

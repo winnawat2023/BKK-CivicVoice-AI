@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BKK CivicVoice AI - System Architecture & Workflow Infographic</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Sarabun', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            dark: '#0B0F19',
+                            card: '#111827',
+                            border: '#1F2937',
+                            green: '#10B981',
+                            cyan: '#06B6D4',
+                            blue: '#3B82F6',
+                            purple: '#8B5CF6',
+                            amber: '#F59E0B'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @keyframes pulseSlow {
+            0%, 100% { opacity: 0.2; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(1.05); }
+        }
+        @keyframes flowLine {
+            from { stroke-dashoffset: 100; }
+            to { stroke-dashoffset: 0; }
+        }
+        .flow-animated {
+            stroke-dasharray: 8;
+            animation: flowLine 2s linear infinite;
+        }
+    </style>
+</head>
+<body class="bg-brand-dark text-slate-100 min-h-screen p-4 md:p-8 font-sans antialiased selection:bg-brand-green selection:text-black">
+
+    <!-- Top Navigation / Header -->
+    <div class="max-w-7xl mx-auto mb-8">
+        <div class="flex flex-col md:flex-row md:items-center justify-between pb-6 border-b border-brand-border gap-4">
+            <div>
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-green/10 border border-brand-green/30 text-brand-green text-xs font-semibold uppercase tracking-wider mb-2">
+                    <span class="w-2 h-2 rounded-full bg-brand-green animate-ping"></span>
+                    AI Skill Wars 2026 : AI For Bangkok
+                </div>
+                <h1 class="text-2xl md:text-4xl font-extrabold text-white tracking-tight flex items-center gap-3">
+                    BKK CivicVoice AI <span class="text-brand-cyan">Infographic</span>
+                </h1>
+                <p class="text-sm md:text-base text-slate-400 mt-1">
+                    แผนผังแสดงภาพรวมสถาปัตยกรรมและกระบวนการทำงานแบบ End-to-End ตั้งแต่เสียงโทรเข้า 1555 จนถึงปิดเคสส่งเขต
+                </p>
+            </div>
+            <div class="flex items-center gap-3 self-start md:self-auto">
+                <div class="bg-brand-card border border-brand-border px-4 py-2 rounded-xl text-right">
+                    <div class="text-[10px] text-slate-500 uppercase font-semibold">Architecture Stack</div>
+                    <div class="text-xs font-bold text-slate-200">Genesys Cloud + Thai AI Core</div>
+                </div>
+                <div class="bg-emerald-950/40 border border-brand-green/40 px-4 py-2 rounded-xl text-right">
+                    <div class="text-[10px] text-brand-green uppercase font-semibold">Team</div>
+                    <div class="text-xs font-bold text-white">ARK Insights</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Infographic Content Container -->
+    <div class="max-w-7xl mx-auto space-y-12">
+
+        <!-- SECTION 1: 4-STAGE PIPELINE OVERVIEW -->
+        <div>
+            <div class="flex items-center gap-3 mb-6">
+                <div class="w-8 h-8 rounded-lg bg-brand-cyan/20 text-brand-cyan flex items-center justify-center font-bold text-sm border border-brand-cyan/30">1</div>
+                <h2 class="text-xl font-bold text-white">4 ลำดับขั้นตอนการทำงานหลัก (End-to-End Workflow Pipeline)</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 relative">
+                
+                <!-- Stage 1 -->
+                <div class="bg-brand-card border border-brand-border hover:border-brand-cyan/50 transition duration-300 rounded-2xl p-5 relative overflow-hidden group">
+                    <div class="absolute -top-10 -right-10 w-24 h-24 bg-blue-500/10 rounded-full blur-xl group-hover:bg-blue-500/20 transition"></div>
+                    <div class="text-xs font-mono font-semibold text-blue-400 mb-1">STAGE 01</div>
+                    <div class="text-lg font-bold text-white mb-2 flex items-center gap-2">
+                        <span>📞</span> สายโทรเข้า 1555
+                    </div>
+                    <p class="text-xs text-slate-400 mb-4 leading-relaxed">
+                        ประชาชนโทรเข้าเบอร์ 1555 ผ่านโครงข่ายโทรคมนาคม เข้าสู่ระบบ Call Center อัจฉริยะ
+                    </p>
+                    <div class="space-y-2 bg-slate-900/60 p-3 rounded-xl border border-slate-800 text-[11px]">
+                        <div class="flex justify-between text-slate-300">
+                            <span>Platform:</span>
+                            <span class="font-semibold text-white">Genesys Cloud CX</span>
+                        </div>
+                        <div class="flex justify-between text-slate-300">
+                            <span>Audio Codec:</span>
+                            <span class="font-mono text-cyan-400">8kHz G.711 / Webhook</span>
+                        </div>
+                        <div class="flex justify-between text-slate-300">
+                            <span>Org Domain:</span>
+                            <span class="font-mono text-slate-400">ark-insights</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stage 2 -->
+                <div class="bg-brand-card border border-brand-border hover:border-brand-green/50 transition duration-300 rounded-2xl p-5 relative overflow-hidden group">
+                    <div class="absolute -top-10 -right-10 w-24 h-24 bg-emerald-500/10 rounded-full blur-xl group-hover:bg-emerald-500/20 transition"></div>
+                    <div class="text-xs font-mono font-semibold text-emerald-400 mb-1">STAGE 02</div>
+                    <div class="text-lg font-bold text-white mb-2 flex items-center gap-2">
+                        <span>🎙️</span> ถอดเสียง 2 ภาษา TH/EN
+                    </div>
+                    <p class="text-xs text-slate-400 mb-4 leading-relaxed">
+                        ถอดเสียงพูดสด Real-time ทั้งภาษาไทย และภาษาอังกฤษจากนักท่องเที่ยวต่างชาติ แปลไทยให้อัตโนมัติ
+                    </p>
+                    <div class="space-y-2 bg-slate-900/60 p-3 rounded-xl border border-slate-800 text-[11px]">
+                        <div class="flex justify-between text-slate-300">
+                            <span>Engine:</span>
+                            <span class="font-semibold text-emerald-400">Faster-Whisper (Turbo)</span>
+                        </div>
+                        <div class="flex justify-between text-slate-300">
+                            <span>Multilingual:</span>
+                            <span class="font-mono text-cyan-400">Auto TH/EN Detect</span>
+                        </div>
+                        <div class="flex justify-between text-slate-300">
+                            <span>Latency:</span>
+                            <span class="font-mono text-emerald-400">&lt; 150 ms</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stage 3 -->
+                <div class="bg-brand-card border border-brand-border hover:border-brand-purple/50 transition duration-300 rounded-2xl p-5 relative overflow-hidden group">
+                    <div class="absolute -top-10 -right-10 w-24 h-24 bg-purple-500/10 rounded-full blur-xl group-hover:bg-purple-500/20 transition"></div>
+                    <div class="text-xs font-mono font-semibold text-purple-400 mb-1">STAGE 03</div>
+                    <div class="text-lg font-bold text-white mb-2 flex items-center gap-2">
+                        <span>🧠</span> AI สรุปและวิเคราะห์
+                    </div>
+                    <p class="text-xs text-slate-400 mb-4 leading-relaxed">
+                        วิเคราะห์เนื้อหา สกัดชื่อเขต ถนน ซอย จัดหมวดหมู่ 21 ประเภท และประเมินความเร่งด่วน
+                    </p>
+                    <div class="space-y-2 bg-slate-900/60 p-3 rounded-xl border border-slate-800 text-[11px]">
+                        <div class="flex justify-between text-slate-300">
+                            <span>LLM Core:</span>
+                            <span class="font-semibold text-purple-400">Typhoon-1.5X-8B</span>
+                        </div>
+                        <div class="flex justify-between text-slate-300">
+                            <span>Knowledge:</span>
+                            <span class="font-mono text-slate-300">BKK Open Data (3M Records)</span>
+                        </div>
+                        <div class="flex justify-between text-slate-300">
+                            <span>Accuracy:</span>
+                            <span class="font-mono text-emerald-400">&gt; 94% Auto-Classify</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stage 4 -->
+                <div class="bg-brand-card border border-brand-border hover:border-brand-amber/50 transition duration-300 rounded-2xl p-5 relative overflow-hidden group">
+                    <div class="absolute -top-10 -right-10 w-24 h-24 bg-amber-500/10 rounded-full blur-xl group-hover:bg-amber-500/20 transition"></div>
+                    <div class="text-xs font-mono font-semibold text-amber-400 mb-1">STAGE 04</div>
+                    <div class="text-lg font-bold text-white mb-2 flex items-center gap-2">
+                        <span>🚀</span> AI คุยสายสด & โทรแจ้งผล
+                    </div>
+                    <p class="text-xs text-slate-400 mb-4 leading-relaxed">
+                        AI สนทนาตอบสายประชาชนอัตโนมัติ (Zero Wait Time) และ AI โทรกลับแจ้งผลเมื่อเขตซ่อมเสร็จ
+                    </p>
+                    <div class="space-y-2 bg-slate-900/60 p-3 rounded-xl border border-slate-800 text-[11px]">
+                        <div class="flex justify-between text-slate-300">
+                            <span>Inbound Bot:</span>
+                            <span class="font-semibold text-amber-400">Typhoon + Neural TTS</span>
+                        </div>
+                        <div class="flex justify-between text-slate-300">
+                            <span>Outbound Voice:</span>
+                            <span class="font-mono text-slate-300">AI โทรแจ้งผลซ่อมเสร็จ</span>
+                        </div>
+                        <div class="flex justify-between text-slate-300">
+                            <span>Call Capacity:</span>
+                            <span class="font-mono text-emerald-400">100% ตอบสายทันที</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- SECTION 2: SYSTEM ARCHITECTURE & DATA FLOW DIAGRAM -->
+        <div class="bg-brand-card border border-brand-border rounded-3xl p-6 md:p-8 relative overflow-hidden">
+            <div class="flex items-center gap-3 mb-6">
+                <div class="w-8 h-8 rounded-lg bg-brand-green/20 text-brand-green flex items-center justify-center font-bold text-sm border border-brand-green/30">2</div>
+                <div>
+                    <h2 class="text-xl font-bold text-white">ผังการเชื่อมโยงระบบ (System Architecture & Component Diagram)</h2>
+                    <p class="text-xs text-slate-400">แสดงการแลกเปลี่ยนข้อมูลระหว่าง Cloud, On-Premise GPU Cluster, Agent Desktop และ External Services</p>
+                </div>
+            </div>
+
+            <!-- Architecture Grid Diagram -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+                
+                <!-- Left: Telephony Layer (3 Cols) -->
+                <div class="lg:col-span-3 space-y-4 flex flex-col justify-between">
+                    <div class="border border-blue-500/30 bg-blue-950/20 rounded-2xl p-5 h-full flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="text-xs font-bold text-blue-400 uppercase tracking-wider">Telephony Cloud</span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-blue-500"></span>
+                            </div>
+                            <h3 class="text-base font-bold text-white mb-2">Genesys Cloud CX</h3>
+                            <p class="text-xs text-slate-400 mb-4 leading-relaxed">
+                                ศูนย์กลางจัดการคู่สายโทรศัพท์ การบันทึกเสียง และ Routing อัตโนมัติ (Org: ark-insights)
+                            </p>
+                            <ul class="text-xs space-y-2 text-slate-300">
+                                <li class="flex items-center gap-2">
+                                    <span class="text-blue-400">✔</span> Inbound Call Routing (1555)
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <span class="text-blue-400">✔</span> Audio Stream Webhook
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <span class="text-blue-400">✔</span> Interaction Event Triggers
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-blue-900/50 text-[11px] text-blue-300 font-mono">
+                            Protocol: Webhook / REST API
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Center: AI Core on DGX 101 (6 Cols) -->
+                <div class="lg:col-span-6 space-y-4">
+                    <div class="border border-brand-green/40 bg-gradient-to-b from-brand-card to-slate-900 rounded-2xl p-6 relative shadow-2xl">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center gap-2">
+                                <span class="w-3 h-3 rounded-full bg-emerald-500 animate-pulse"></span>
+                                <span class="text-xs font-bold text-brand-green uppercase tracking-wider">DGX 101 AI Compute Node</span>
+                            </div>
+                            <span class="text-[11px] font-mono bg-slate-800 text-slate-300 px-2.5 py-1 rounded-lg border border-slate-700">192.168.200.101</span>
+                        </div>
+
+                        <!-- Inner Model Grid -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                            
+                            <!-- Faster-Whisper Box -->
+                            <div class="bg-slate-950/80 border border-slate-800 p-4 rounded-xl">
+                                <div class="flex items-center justify-between mb-1">
+                                    <span class="text-xs font-bold text-emerald-400">🎙️ ASR Core</span>
+                                    <span class="text-[10px] font-mono text-slate-500">Port 5001</span>
+                                </div>
+                                <div class="text-sm font-bold text-white">Faster-Whisper</div>
+                                <div class="text-[11px] text-slate-400 mb-2">large-v3-turbo</div>
+                                <div class="text-[10px] text-slate-500 space-y-1">
+                                    <div>• Real-time Thai Audio Transcribe</div>
+                                    <div>• 8kHz Bandwidth Optimized</div>
+                                    <div>• Low Latency Streaming</div>
+                                </div>
+                            </div>
+
+                            <!-- Typhoon Box -->
+                            <div class="bg-slate-950/80 border border-slate-800 p-4 rounded-xl">
+                                <div class="flex items-center justify-between mb-1">
+                                    <span class="text-xs font-bold text-purple-400">🧠 LLM Brain</span>
+                                    <span class="text-[10px] font-mono text-slate-500">Port 8001 (vLLM)</span>
+                                </div>
+                                <div class="text-sm font-bold text-white">Typhoon-1.5X-8B</div>
+                                <div class="text-[11px] text-slate-400 mb-2">Instruct (SCB 10X)</div>
+                                <div class="text-[10px] text-slate-500 space-y-1">
+                                    <div>• เข้าใจภาษาพูด/คำสแลงคนกรุง</div>
+                                    <div>• แยกแยะ 50 เขต & ถนน/ซอย</div>
+                                    <div>• สรุป 3 บรรทัด & ชี้เป้าเร่งด่วน</div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Backend API Integration Box -->
+                        <div class="bg-slate-950/90 border border-brand-cyan/40 p-4 rounded-xl">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-xs font-bold text-brand-cyan flex items-center gap-1.5">
+                                    <span>⚡</span> CivicVoice API Gateway (FastAPI)
+                                </span>
+                                <span class="text-[10px] font-mono text-slate-400">Port 8000 / 443 SSL</span>
+                            </div>
+                            <div class="grid grid-cols-3 gap-2 text-center text-[10px]">
+                                <div class="bg-slate-900 p-2 rounded-lg border border-slate-800">
+                                    <div class="text-slate-400 font-mono">POST</div>
+                                    <div class="text-white font-semibold mt-0.5">/genesys/webhook</div>
+                                </div>
+                                <div class="bg-slate-900 p-2 rounded-lg border border-slate-800">
+                                    <div class="text-slate-400 font-mono">WS</div>
+                                    <div class="text-white font-semibold mt-0.5">/ws/agent/{id}</div>
+                                </div>
+                                <div class="bg-slate-900 p-2 rounded-lg border border-slate-800">
+                                    <div class="text-slate-400 font-mono">POST</div>
+                                    <div class="text-white font-semibold mt-0.5">/api/v1/tickets</div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Right: Front-Facing Layer (3 Cols) -->
+                <div class="lg:col-span-3 space-y-4 flex flex-col justify-between">
+                    
+                    <!-- Agent Widget Box -->
+                    <div class="border border-brand-cyan/30 bg-cyan-950/20 rounded-2xl p-5 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-xs font-bold text-brand-cyan uppercase tracking-wider">Agent UI</span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-brand-cyan"></span>
+                            </div>
+                            <h3 class="text-base font-bold text-white mb-1">Agent Copilot Widget</h3>
+                            <p class="text-xs text-slate-400 mb-3">
+                                ฝังเป็น Client App ใน Genesys Agent Desktop
+                            </p>
+                            <div class="text-[11px] text-slate-300 space-y-1">
+                                <div>• Live Subtitles แสดงเสียงพูดสด</div>
+                                <div>• Auto-Filled Ticket Fields</div>
+                                <div>• 1-Click Dispatch to District</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Citizen & BKK Sector Box -->
+                    <div class="border border-amber-500/30 bg-amber-950/20 rounded-2xl p-5 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-xs font-bold text-amber-400 uppercase tracking-wider">Public & Sectors</span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
+                            </div>
+                            <h3 class="text-base font-bold text-white mb-1">กทม. 50 เขต & ประชาชน</h3>
+                            <p class="text-xs text-slate-400 mb-3">
+                                รับเรื่องผ่านระบบ และประชาชนตรวจเช็กสถานะ
+                            </p>
+                            <div class="text-[11px] text-slate-300 space-y-1">
+                                <div>• SMS Tracking Link ส่งเข้ามือถือ</div>
+                                <div>• แชร์พิกัด GPS & รูปถ่ายเพิ่มเติม</div>
+                                <div>• ส่งตรงฝ่ายโยธา/รักษา/เทศกิจ</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <!-- SECTION 3: REAL-WORLD CALL SCENARIO (WALKTHROUGH) -->
+        <div>
+            <div class="flex items-center gap-3 mb-6">
+                <div class="w-8 h-8 rounded-lg bg-brand-purple/20 text-brand-purple flex items-center justify-center font-bold text-sm border border-brand-purple/30">3</div>
+                <div>
+                    <h2 class="text-xl font-bold text-white">ตัวอย่างการจำลองเคสจริง (Live Call Simulation Scenario)</h2>
+                    <p class="text-xs text-slate-400">จำลองสถานการณ์เมื่อมีประชาชนโทรแจ้งเรื่องฉุกเฉินผ่านสายด่วน 1555</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <!-- Step 1: Voice Input -->
+                <div class="bg-brand-card border border-brand-border rounded-2xl p-5">
+                    <div class="text-xs font-mono text-slate-400 mb-2 flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-blue-500"></span>
+                        <span>00:15 SECONDS</span>
+                    </div>
+                    <div class="text-sm font-bold text-white mb-2">1. ประชาชนแจ้งทางโทรศัพท์</div>
+                    <div class="bg-slate-900 p-3 rounded-xl border border-slate-800 text-xs text-slate-300 italic mb-3 leading-relaxed">
+                        "สวัสดีครับ มีฝาท่อระบายน้ำแตกชำรุด อยู่ในซอยสุขุมวิท 50 ใกล้ๆ จุดกลับรถ มอเตอร์ไซค์เฉี่ยวเกือบล้มเมื่อกี้เลย อันตรายมากครับ"
+                    </div>
+                    <div class="text-[11px] text-slate-400">
+                        ⚡ <strong>Faster-Whisper:</strong> ถอดเสียงส่งต่อไปยัง LLM ภายในเวลา &lt; 200ms
+                    </div>
+                </div>
+
+                <!-- Step 2: AI Brain Parsing -->
+                <div class="bg-brand-card border border-brand-border rounded-2xl p-5">
+                    <div class="text-xs font-mono text-slate-400 mb-2 flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-purple-500"></span>
+                        <span>00:18 SECONDS</span>
+                    </div>
+                    <div class="text-sm font-bold text-white mb-2">2. Typhoon 8B วิเคราะห์ข้อมูล</div>
+                    <div class="bg-slate-900 p-3 rounded-xl border border-slate-800 space-y-1.5 text-xs">
+                        <div class="flex justify-between">
+                            <span class="text-slate-400">หมวดหมู่:</span>
+                            <span class="text-emerald-400 font-semibold">ท่อระบายน้ำ / ถนน</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-slate-400">พิกัด/เขต:</span>
+                            <span class="text-cyan-400 font-semibold">ซอยสุขุมวิท 50 (เขตคลองเตย)</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-slate-400">ความเร่งด่วน:</span>
+                            <span class="text-red-400 font-bold">CRITICAL (เสี่ยงอุบัติเหตุ)</span>
+                        </div>
+                    </div>
+                    <div class="text-[11px] text-slate-400 mt-3">
+                        ⚡ <strong>BKK Open Data:</strong> แมปเขตคลองเตยอัตโนมัติด้วยความแม่นยำ 98%
+                    </div>
+                </div>
+
+                <!-- Step 3: Action & Resolution -->
+                <div class="bg-brand-card border border-brand-border rounded-2xl p-5">
+                    <div class="text-xs font-mono text-slate-400 mb-2 flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-amber-500"></span>
+                        <span>00:30 SECONDS</span>
+                    </div>
+                    <div class="text-sm font-bold text-white mb-2">3. เจ้าหน้าที่กด 1-Click จบเรื่อง</div>
+                    <div class="bg-slate-900 p-3 rounded-xl border border-slate-800 space-y-1.5 text-xs text-slate-300 mb-3">
+                        <div class="text-emerald-400 font-semibold">✔ Ticket #BKK-261123-0001 สร้างสำเร็จ</div>
+                        <div>• ส่งเรื่องถึง: ฝ่ายโยธา สำนักงานเขตคลองเตย</div>
+                        <div>• SMS ส่งลิงก์ไปยัง: 084-768-5368</div>
+                    </div>
+                    <div class="text-[11px] text-slate-400">
+                        ⚡ <strong>ผลลัพธ์:</strong> ลดเวลาสนทนา (AHT) จากเดิม 4.5 นาที เหลือเพียง 1.5 นาที!
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- SECTION 4: TEAM ROSTER & DELIVERABLES -->
+        <div class="bg-slate-900/40 border border-brand-border rounded-3xl p-6 md:p-8">
+            <h2 class="text-lg font-bold text-white mb-4">👥 ทีมงานและจุดรับผิดชอบ (ARK Insights Team Roster)</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-xs">
+                <div class="bg-brand-card border border-brand-border p-4 rounded-xl">
+                    <div class="text-slate-400 text-[10px] uppercase font-mono">Team Lead & Pitch</div>
+                    <div class="text-white font-bold text-sm mt-1">คุณชัยพร หอมเทียน</div>
+                    <div class="text-brand-green mt-2 font-medium">สไลด์ Pitch Deck, กลยุทธ์ธุรกิจ & Demo Flow</div>
+                </div>
+                <div class="bg-brand-card border border-brand-border p-4 rounded-xl">
+                    <div class="text-slate-400 text-[10px] uppercase font-mono">Genesys Cloud & Audio</div>
+                    <div class="text-white font-bold text-sm mt-1">คุณวัชระ บังเกิดลาภ</div>
+                    <div class="text-blue-400 mt-2 font-medium">Architect Flow, Telephony & Webhook Stream</div>
+                </div>
+                <div class="bg-brand-card border border-brand-border p-4 rounded-xl">
+                    <div class="text-slate-400 text-[10px] uppercase font-mono">AI Engine & Data</div>
+                    <div class="text-white font-bold text-sm mt-1">คุณพีรพันธ์ สินอยู่</div>
+                    <div class="text-purple-400 mt-2 font-medium">Whisper ASR, Typhoon LLM & BKK 3M Data</div>
+                </div>
+                <div class="bg-brand-card border border-brand-border p-4 rounded-xl">
+                    <div class="text-slate-400 text-[10px] uppercase font-mono">Frontend & Integration</div>
+                    <div class="text-white font-bold text-sm mt-1">คุณอิทธิพล พวงสุพรรณ</div>
+                    <div class="text-cyan-400 mt-2 font-medium">Agent Widget Iframe, WebSocket & Mobile Web</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="max-w-7xl mx-auto mt-12 pt-6 border-t border-brand-border text-center text-xs text-slate-500">
+        BKK CivicVoice AI — Transforming Bangkok 1555 Hotline with Genesys Cloud CX & Thai Foundation AI
+    </div>
+
+</body>
+</html>

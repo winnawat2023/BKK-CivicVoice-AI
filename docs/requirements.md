@@ -2,7 +2,7 @@
 ## BKK CivicVoice AI: Intelligent Omnichannel Citizen Contact Center for Bangkok
 **AI Skill Wars 2026 — Theme 02: Civic & Public Service Access**  
 **Team / Organization:** ARK Insights Co., Ltd. (`ark-insights`)  
-**Core Technologies:** Kiro IDE + AI-DLC, Genesys Cloud CX, Typhoon Thai LLM / Fine-tuned Gemma, FastAPI/Python, WebSocket
+**Core Technologies:** Kiro IDE + AI-DLC, Genesys Cloud CX, Faster-Whisper (large-v3-turbo), Typhoon-1.5X-8B-Instruct, FastAPI/Python, WebSocket
 
 ### Team Members & Roles:
 * **Mr. Chaiyaporn Homtean** (`h.chaiyaporn@ark-insights.com`) — Member 1: Team Lead, Product & Pitch Master

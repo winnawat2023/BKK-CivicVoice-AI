@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BKK CivicVoice AI - Master Execution Plan & Tracking Dashboard</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Sarabun', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            dark: '#0B0F19',
+                            card: '#111827',
+                            border: '#1F2937',
+                            green: '#10B981',
+                            cyan: '#06B6D4',
+                            blue: '#3B82F6',
+                            purple: '#8B5CF6',
+                            amber: '#F59E0B'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-brand-dark text-slate-100 min-h-screen p-4 md:p-8 font-sans antialiased selection:bg-brand-green selection:text-black">
+
+    <!-- Top Header & Metrics Summary -->
+    <div class="max-w-7xl mx-auto mb-8">
+        <div class="flex flex-col md:flex-row md:items-center justify-between pb-6 border-b border-brand-border gap-4">
+            <div>
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-green/10 border border-brand-green/30 text-brand-green text-xs font-semibold uppercase tracking-wider mb-2">
+                    <span class="w-2 h-2 rounded-full bg-brand-green animate-ping"></span>
+                    Master Execution & Tracking Dashboard
+                </div>
+                <h1 class="text-2xl md:text-3xl font-extrabold text-white tracking-tight flex items-center gap-3">
+                    BKK CivicVoice AI <span class="text-brand-cyan">Master Plan</span>
+                </h1>
+                <p class="text-xs md:text-sm text-slate-400 mt-1">
+                    เป้าหมาย: ส่งมอบระบบเสร็จ 100% ภายใน <strong>28 พ.ย. 2569</strong> เพื่อซักซ้อมและพร้อมรับโจทย์ Surprise วันที่ <strong>30 พ.ย. 2569</strong>
+                </p>
+            </div>
+            
+            <!-- Quick Progress Stats -->
+            <div class="flex items-center gap-3">
+                <div class="bg-brand-card border border-brand-border px-4 py-3 rounded-2xl text-center min-w-[110px]">
+                    <div class="text-[10px] text-slate-400 uppercase font-semibold">Overall Progress</div>
+                    <div class="text-xl font-extrabold text-brand-green font-mono">82%</div>
+                </div>
+                <div class="bg-brand-card border border-brand-border px-4 py-3 rounded-2xl text-center min-w-[110px]">
+                    <div class="text-[10px] text-slate-400 uppercase font-semibold">Days to Game</div>
+                    <div class="text-xl font-extrabold text-amber-400 font-mono">7 Days</div>
+                </div>
+                <div class="bg-brand-card border border-brand-border px-4 py-3 rounded-2xl text-center min-w-[110px]">
+                    <div class="text-[10px] text-slate-400 uppercase font-semibold">Submission Goal</div>
+                    <div class="text-xl font-extrabold text-brand-cyan font-mono">28 Nov</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Container -->
+    <div class="max-w-7xl mx-auto space-y-8">
+
+        <!-- 1. Interactive Phase Milestone Timeline -->
+        <div class="bg-brand-card border border-brand-border rounded-3xl p-6">
+            <h2 class="text-base font-bold text-white mb-4 flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-brand-cyan"></span>
+                Timeline & 5-Phase Roadmap
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
+                
+                <!-- Phase 1 -->
+                <div class="border border-brand-green/40 bg-brand-green/5 rounded-2xl p-4 relative">
+                    <div class="flex items-center justify-between text-xs mb-2">
+                        <span class="font-mono text-brand-green font-bold">PHASE 1</span>
+                        <span class="bg-brand-green text-black text-[10px] font-bold px-2 py-0.5 rounded-full">DONE</span>
+                    </div>
+                    <div class="text-sm font-bold text-white mb-1">Architecture & Data</div>
+                    <div class="text-[11px] text-slate-400 mb-3">23 พ.ย. 2569</div>
+                    <ul class="text-[11px] text-slate-300 space-y-1">
+                        <li>✔ วิเคราะห์ข้อมูล 3M เรคคอร์ด</li>
+                        <li>✔ สรุป Model: Whisper + Typhoon</li>
+                        <li>✔ ออกแบบ Schema & Architecture</li>
+                    </ul>
+                </div>
+
+                <!-- Phase 2 -->
+                <div class="border border-brand-green/40 bg-brand-green/5 rounded-2xl p-4 relative">
+                    <div class="flex items-center justify-between text-xs mb-2">
+                        <span class="font-mono text-brand-green font-bold">PHASE 2</span>
+                        <span class="bg-brand-green text-black text-[10px] font-bold px-2 py-0.5 rounded-full">DONE</span>
+                    </div>
+                    <div class="text-sm font-bold text-white mb-1">AI Stack & Server</div>
+                    <div class="text-[11px] text-slate-400 mb-3">23 พ.ย. 2569</div>
+                    <ul class="text-[11px] text-slate-300 space-y-1">
+                        <li>✔ Faster-Whisper Turbo (int8/ARM)</li>
+                        <li>✔ Typhoon-1.5X-8B บน vLLM (8001)</li>
+                        <li>✔ Public HTTPS/WSS Gateway พร้อม 100%</li>
+                    </ul>
+                </div>
+
+                <!-- Phase 3 -->
+                <div class="border border-purple-500/50 bg-purple-950/20 rounded-2xl p-4 relative">
+                    <div class="flex items-center justify-between text-xs mb-2">
+                        <span class="font-mono text-purple-400 font-bold">PHASE 3</span>
+                        <span class="bg-purple-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full animate-pulse">IN PROGRESS</span>
+                    </div>
+                    <div class="text-sm font-bold text-white mb-1">Genesys & Widget UI</div>
+                    <div class="text-[11px] text-slate-400 mb-3">24 – 27 พ.ย. 2569</div>
+                    <ul class="text-[11px] text-slate-300 space-y-1">
+                        <li>▶ Inbound Flow ใน Genesys (02-096-6763)</li>
+                        <li>▶ Agent Copilot Widget (Multilingual)</li>
+                        <li>▶ WebSocket Real-time Sync</li>
+                    </ul>
+                </div>
+
+                <!-- Phase 4 -->
+                <div class="border border-brand-border bg-slate-900/60 rounded-2xl p-4 relative">
+                    <div class="flex items-center justify-between text-xs mb-2">
+                        <span class="font-mono text-amber-400 font-bold">PHASE 4</span>
+                        <span class="bg-slate-800 text-slate-400 text-[10px] font-bold px-2 py-0.5 rounded-full">PENDING</span>
+                    </div>
+                    <div class="text-sm font-bold text-white mb-1">End-to-End Test & Video</div>
+                    <div class="text-[11px] text-slate-400 mb-3">28 – 29 พ.ย. 2569</div>
+                    <ul class="text-[11px] text-slate-300 space-y-1">
+                        <li>• ทดสอบโทรสายจริง 1555 Test</li>
+                        <li>• ถ่ายทำ Backup Video (< 3 นาที)</li>
+                        <li>• ซักซ้อมบทพรีเซนต์ 8 สไลด์</li>
+                    </ul>
+                </div>
+
+                <!-- Phase 5 -->
+                <div class="border border-brand-border bg-slate-900/60 rounded-2xl p-4 relative">
+                    <div class="flex items-center justify-between text-xs mb-2">
+                        <span class="font-mono text-rose-400 font-bold">PHASE 5</span>
+                        <span class="bg-slate-800 text-slate-400 text-[10px] font-bold px-2 py-0.5 rounded-full">GAME DAY</span>
+                    </div>
+                    <div class="text-sm font-bold text-white mb-1">Surprise Challenge</div>
+                    <div class="text-[11px] text-slate-400 mb-3">30 พ.ย. 2569 @ BITEC</div>
+                    <ul class="text-[11px] text-slate-300 space-y-1">
+                        <li>• 09:45 รับโจทย์ลับเพิ่ม 1 ข้อ</li>
+                        <li>• 14:30 ส่งมอบผลงานขึ้นระบบ</li>
+                        <li>• 15:00 Live Demo ชิงชนะเลิศ</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- 2. Detailed Task Tracking Table by Owner -->
+        <div class="bg-brand-card border border-brand-border rounded-3xl p-6">
+            <h2 class="text-base font-bold text-white mb-4 flex items-center justify-between">
+                <span class="flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-brand-green"></span>
+                    ตารางติดตามสถานะงานรายบุคคล (Action Items & Task Matrix)
+                </span>
+                <span class="text-xs text-slate-400 font-normal">อัปเดตล่าสุด: 23 พ.ย. 2569</span>
+            </h2>
+
+            <div class="overflow-x-auto">
+                <table class="w-full text-left text-xs text-slate-300">
+                    <thead class="bg-slate-900/80 text-slate-400 uppercase font-mono border-b border-brand-border">
+                        <tr>
+                            <th class="py-3 px-4">ผู้รับผิดชอบ</th>
+                            <th class="py-3 px-4">รายการงาน (Action Items)</th>
+                            <th class="py-3 px-4">กำหนดเสร็จ</th>
+                            <th class="py-3 px-4">สถานะ</th>
+                            <th class="py-3 px-4">Deliverables / ลิงก์งาน</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-brand-border/60">
+                        
+                        <!-- Chaiyaporn -->
+                        <tr class="hover:bg-slate-900/40">
+                            <td class="py-3 px-4 font-semibold text-white">
+                                ชัยพร (Lead)
+                            </td>
+                            <td class="py-3 px-4">
+                                • วิเคราะห์ข้อมูล 3M BKK Open Data<br>
+                                • ร่างเนื้อหา Pitch Deck 8 สไลด์ & System Flow Infographic<br>
+                                • เพิ่มฟังก์ชัน Tourist Assist & Dual-Mode Autonomous Voicebot ลงในแผน<br>
+                                • ซักซ้อมบทบรรยาย & ควบคุมแผนการแข่งขัน
+                            </td>
+                            <td class="py-3 px-4 font-mono text-slate-400">23-29 พ.ย.</td>
+                            <td class="py-3 px-4">
+                                <span class="bg-emerald-950 border border-brand-green text-brand-green px-2 py-0.5 rounded-full font-bold">90% Complete</span>
+                            </td>
+                            <td class="py-3 px-4 font-mono text-cyan-400">
+                                docs/pitch-deck.html<br>docs/system-infographic.html
+                            </td>
+                        </tr>
+
+                        <!-- Watchara -->
+                        <tr class="hover:bg-slate-900/40">
+                            <td class="py-3 px-4 font-semibold text-white">
+                                วัชระ (Genesys)
+                            </td>
+                            <td class="py-3 px-4">
+                                • ตั้งค่า Genesys Cloud CX Org: ark-insights<br>
+                                • สร้าง Inbound Call Flow รับสายจำลอง 1555<br>
+                                • เชื่อมต่อ Webhook ส่ง Audio Stream เข้า Server<br>
+                                • ฝัง Agent Copilot Widget ลงใน Genesys Client App
+                            </td>
+                            <td class="py-3 px-4 font-mono text-slate-400">26-27 พ.ย.</td>
+                            <td class="py-3 px-4">
+                                <span class="bg-blue-950 border border-blue-500 text-blue-400 px-2 py-0.5 rounded-full font-bold">Ready to Build</span>
+                            </td>
+                            <td class="py-3 px-4 font-mono text-slate-400">
+                                Genesys Architect Flow
+                            </td>
+                        </tr>
+
+                        <!-- Peerapun -->
+                        <tr class="hover:bg-slate-900/40">
+                            <td class="py-3 px-4 font-semibold text-white">
+                                พีรพันธ์ (AI/Data)
+                            </td>
+                            <td class="py-3 px-4">
+                                • Deploy Faster-Whisper Turbo บน DGX 101<br>
+                                • Deploy Typhoon-1.5X-8B-Instruct บน vLLM (พอร์ต 8001)<br>
+                                • พัฒนา & Deploy AI Voicebot (คุยสายตอบสด) + Neural TTS (ไทย/อังกฤษ)<br>
+                                • พัฒนาระบบ AI Proactive Outbound Call โทรกลับแจ้งผลประชาชนอัตโนมัติ
+                            </td>
+                            <td class="py-3 px-4 font-mono text-slate-400">23 พ.ย.</td>
+                            <td class="py-3 px-4">
+                                <span class="bg-emerald-950 border border-brand-green text-brand-green px-2 py-0.5 rounded-full font-bold">100% Completed</span>
+                            </td>
+                            <td class="py-3 px-4 font-mono text-cyan-400">
+                                /api/v1/voicebot/converse<br>/api/v1/outbound/call-citizen<br>/api/v1/tts/synthesize
+                            </td>
+                        </tr>
+
+                        <!-- Aitthiphon -->
+                        <tr class="hover:bg-slate-900/40">
+                            <td class="py-3 px-4 font-semibold text-white">
+                                อิทธิพล (Frontend)
+                            </td>
+                            <td class="py-3 px-4">
+                                • ดีไซน์และพัฒนา Agent Copilot Widget (Iframe)<br>
+                                • เชื่อมต่อ WebSocket รับ Live Transcript & Summary<br>
+                                • สร้างปุ่ม 1-Click Dispatch ส่งข้อมูลเข้าเขต<br>
+                                • พัฒนาหน้า Mobile Tracking สำหรับประชาชน
+                            </td>
+                            <td class="py-3 px-4 font-mono text-slate-400">26-27 พ.ย.</td>
+                            <td class="py-3 px-4">
+                                <span class="bg-purple-950 border border-purple-500 text-purple-400 px-2 py-0.5 rounded-full font-bold">Brief Issued</span>
+                            </td>
+                            <td class="py-3 px-4 font-mono text-cyan-400">
+                                docs/design-brief-aitthiphon.md<br>src/frontend/widget/index.html
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- 3. Key Deliverables Checklist (30 Nov Submission - 14:30) -->
+        <div class="bg-brand-card border border-brand-border rounded-3xl p-6">
+            <h2 class="text-base font-bold text-white mb-4 flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+                Checklist 5 สิ่งที่ต้องส่งมอบในวันแข่งจริง (ส่งก่อน 14:30 น.)
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
+                
+                <div class="bg-slate-900/60 border border-brand-border p-4 rounded-2xl">
+                    <div class="text-[10px] font-mono text-slate-400 mb-1">ITEM 01</div>
+                    <div class="text-sm font-bold text-white mb-1">Working Prototype</div>
+                    <p class="text-[11px] text-slate-400 mb-3">ระบบโทรติด ถอดเสียงสด สรุปเคส และสร้าง Ticket ได้จริง</p>
+                    <span class="text-[10px] bg-blue-900/40 text-blue-300 border border-blue-500/30 px-2 py-0.5 rounded-md">เกณฑ์: 30% Function</span>
+                </div>
+
+                <div class="bg-slate-900/60 border border-brand-border p-4 rounded-2xl">
+                    <div class="text-[10px] font-mono text-slate-400 mb-1">ITEM 02</div>
+                    <div class="text-sm font-bold text-white mb-1">Pitch Deck (&lt; 8 Slides)</div>
+                    <p class="text-[11px] text-slate-400 mb-3">สไลด์พรีเซนต์ 8 สไลด์ ตรงประเด็น สื่อสาร Impact ชัดเจน</p>
+                    <span class="text-[10px] bg-brand-green/20 text-brand-green border border-brand-green/30 px-2 py-0.5 rounded-md">พร้อม 100% แล้ว</span>
+                </div>
+
+                <div class="bg-slate-900/60 border border-brand-border p-4 rounded-2xl">
+                    <div class="text-[10px] font-mono text-slate-400 mb-1">ITEM 03</div>
+                    <div class="text-sm font-bold text-white mb-1">GitHub Repo (Public)</div>
+                    <p class="text-[11px] text-slate-400 mb-3">โครงสร้าง Clean Code, Setup Script และคู่มือชัดเจน</p>
+                    <span class="text-[10px] bg-brand-green/20 text-brand-green border border-brand-green/30 px-2 py-0.5 rounded-md">Commit & Push พร้อม</span>
+                </div>
+
+                <div class="bg-slate-900/60 border border-brand-border p-4 rounded-2xl">
+                    <div class="text-[10px] font-mono text-slate-400 mb-1">ITEM 04</div>
+                    <div class="text-sm font-bold text-white mb-1">Backup Video (&lt; 3 Mins)</div>
+                    <p class="text-[11px] text-slate-400 mb-3">วิดีโอจำลองการโทรสาธิต ป้องกันเหตุสุดวิสัยเน็ตหลุดบนเวที</p>
+                    <span class="text-[10px] bg-amber-900/40 text-amber-300 border border-amber-500/30 px-2 py-0.5 rounded-md">กำหนดอัด: 29 พ.ย.</span>
+                </div>
+
+                <div class="bg-slate-900/60 border border-brand-border p-4 rounded-2xl">
+                    <div class="text-[10px] font-mono text-slate-400 mb-1">ITEM 05</div>
+                    <div class="text-sm font-bold text-white mb-1">Live Demo Script</div>
+                    <p class="text-[11px] text-slate-400 mb-3">บทสนทนาโทรศัพท์จริงต่อหน้ากรรมการ ไหลลื่น ชัดเจน</p>
+                    <span class="text-[10px] bg-purple-900/40 text-purple-300 border border-purple-500/30 px-2 py-0.5 rounded-md">เตรียมซ้อม 28-29 พ.ย.</span>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="max-w-7xl mx-auto mt-12 pt-6 border-t border-brand-border text-center text-xs text-slate-500">
+        BKK CivicVoice AI — Master Execution Plan & Daily Tracking Dashboard
+    </div>
+
+</body>
+</html>
